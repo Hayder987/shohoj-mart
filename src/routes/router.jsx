@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import HelpSupport from "../pages/HelpSupport";
 import Contact from "../pages/Contact";
+import Collection from "../pages/Collection";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/help", element: <HelpSupport /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/collection", element: <Collection/> },
     ],
   },
 ]);
