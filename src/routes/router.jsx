@@ -6,6 +6,8 @@ import Register from "../pages/Register";
 import HelpSupport from "../pages/HelpSupport";
 import Contact from "../pages/Contact";
 import Collection from "../pages/Collection";
+import Offers from "../pages/Offers";
+import WishList from "../pages/WishList";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +20,9 @@ export const router = createBrowserRouter([
       { path: "/help", element: <HelpSupport /> },
       { path: "/contact", element: <Contact /> },
       { path: "/collection", element: <Collection/> },
+      { path: "/offers", element: <Offers/> },
+      { path: "/cart", element: <Offers/> },
+      { path: "/wishlist", element: <WishList/> },
     ],
   },
 ]);
