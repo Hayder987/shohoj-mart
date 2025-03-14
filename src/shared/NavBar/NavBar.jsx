@@ -6,7 +6,7 @@ import { Link, NavLink } from "react-router";
 
 const NavBar = () => {
   return (
-    <div className="py-4 bg-blue-800">
+    <div className="py-3 bg-blue-800">
       <nav className="max-w-[1300px] px-4 mx-auto">
         {/* nav-1 */}
         <div className="text-white flex justify-between items-center">
@@ -64,7 +64,7 @@ const NavBar = () => {
         </div>
         {/* nav-2 */}
         <div className="mt-8 flex justify-between">
-          <ul className="flex gap-8 items-center text-white">
+          <ul className="flex gap-6 items-center text-white">
             <NavLink to={"/"}>
               <li className="">Home</li>
             </NavLink>
