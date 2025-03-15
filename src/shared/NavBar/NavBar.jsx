@@ -13,7 +13,7 @@ const NavBar = () => {
           <Link to={"/"}>
             <h1 className="text-4xl font-bold">
               <span className="italic">shohoj</span>
-              <span className="text-orange-300">Mart+</span>
+              <span className="text-yellow-400">Mart+</span>
             </h1>
           </Link>
           {/* serch */}
@@ -36,21 +36,21 @@ const NavBar = () => {
               <p className="">+8801771814597</p>
             </div>
             <Link to={'/wishlist'}>
-              <button className="flex text-orange-300 flex-col cursor-pointer justify-center items-center">
+              <button className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center">
                 <span className="text-3xl ">
                   <FaRegHeart />
                 </span>
                 <span className="text-sm font-light">Wish Lists</span>
               </button>
             </Link>
-            <button className="flex text-orange-300 flex-col cursor-pointer justify-center items-center">
+            <button className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center">
               <span className="text-3xl">
                 <FaRegUser />
               </span>
               <span className="text-sm font-light">Sign In</span>
             </button>
             <Link to={"/cart"}>
-              <button className="flex relative text-orange-300 flex-col cursor-pointer justify-center items-center">
+              <button className="flex relative text-yellow-400 flex-col cursor-pointer justify-center items-center">
                 <span className="text-3xl">
                   <IoCartOutline />
                 </span>

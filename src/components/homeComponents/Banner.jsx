@@ -18,7 +18,7 @@ const Banner = () => {
             Huge Saving On our Product
           </h1>
           <p className="text-white font-semibold mb-4">sale Upto 70% Off Our Product</p>
-          <Link to={'/collection'}><button className="py-2 cursor-pointer px-8 duration-300 hover:bg-white hover:text-black text-white font-medium rounded-full border border-white">shop Now</button></Link>
+          <Link to={'/collection'}><button className="py-2 cursor-pointer px-8 duration-300 hover:bg-white hover:text-black text-white font-medium rounded-full border border-white">Shop Now</button></Link>
         </div>
         <div className="lg:w-4/12"></div>
         <div className="lg:w-4/12"></div>
