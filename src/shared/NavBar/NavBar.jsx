@@ -10,7 +10,7 @@ import LoginFrom from "../../components/NavbarComponents/LoginFrom";
 const NavBar = () => {
   const [sign, setSignIn] = useState(false);
   const [menu, setMenu] = useState(false);
-  
+
   return (
     <div className="py-3 sticky z-20 top-0 bg-blue-800">
       <nav className="max-w-[1300px] hidden lg:flex lg:flex-col  px-4 mx-auto">
@@ -182,7 +182,9 @@ const NavBar = () => {
           </div>
           {/* Menu*/}
           <div className="">
-            <ul className="flex flex-col gap-6 ">
+            <ul
+             onClick={()=> setMenu(!menu)}
+             className="flex flex-col gap-6 ">
               <NavLink to={"/"}>
                 <li className="">Home</li>
               </NavLink>
@@ -191,6 +193,12 @@ const NavBar = () => {
               </NavLink>
               <NavLink to={"/contact"}>
                 <li className="">Contact</li>
+              </NavLink>
+              <NavLink to={"/help"}>
+                <li className="">Help</li>
+              </NavLink>
+              <NavLink to={"/offers"}>
+                <li className="">Offers</li>
               </NavLink>
             </ul>
 
