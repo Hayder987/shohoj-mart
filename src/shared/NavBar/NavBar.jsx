@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { BsGift } from "react-icons/bs";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
 import { MdHelp } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink } from "react-router";
+import LoginFrom from "../../components/NavbarComponents/LoginFrom";
 
 const NavBar = () => {
+  const [sign, setSignIn] = useState(false);
   return (
-    <div className="py-3 bg-blue-800">
-      <nav className="max-w-[1300px] px-4 mx-auto">
+    <div className="py-3 sticky z-20 top-0 bg-blue-800">
+      <nav className="max-w-[1300px]  px-4 mx-auto">
         {/* nav-1 */}
         <div className="text-white flex justify-between items-center">
           <Link to={"/"}>
@@ -35,7 +39,7 @@ const NavBar = () => {
               <p className="">Available 24/7 at</p>
               <p className="">+8801771814597</p>
             </div>
-            <Link to={'/wishlist'}>
+            <Link to={"/wishlist"}>
               <button className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center">
                 <span className="text-3xl ">
                   <FaRegHeart />
@@ -43,7 +47,10 @@ const NavBar = () => {
                 <span className="text-sm font-light">Wish Lists</span>
               </button>
             </Link>
-            <button className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center">
+            <button
+              onClick={() => setSignIn(!sign)}
+              className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center"
+            >
               <span className="text-3xl">
                 <FaRegUser />
               </span>
@@ -94,6 +101,21 @@ const NavBar = () => {
               </div>
             </Link>
           </div>
+        </div>
+        {/* sidebar SignIn */}
+        <div
+          className={`bg-white duration-700 px-6 py-10 ${
+            sign ? "fixed right-0 top-0" : "-right-[2000px] fixed top-0"
+          }   z-10 w-[300px] md:w-[350px] p-12 h-[100vh]`}
+        >
+          <div className="flex mb-12 items-center text-xl justify-between">
+            <p className="font-semibold">Login</p>
+            <p
+             onClick={()=> setSignIn(!sign)}
+             className="cursor-pointer"><RxCross2 /></p>
+          </div>
+          {/* login Form */}
+          <LoginFrom/>
         </div>
       </nav>
     </div>
