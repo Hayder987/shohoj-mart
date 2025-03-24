@@ -1,7 +1,7 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 
-const GoogleLogin = () => {
+const GoogleLogin = ({setSignIn}) => {
   return (
     <div className="flex justify-center">
       <button className="flex cursor-pointer justify-center border border-gray-400 w-full py-2 px-3 rounded-full items-center gap-3">

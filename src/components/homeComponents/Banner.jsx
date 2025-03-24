@@ -14,11 +14,11 @@ const Banner = () => {
     >
       <div className="container px-4 mx-auto">
         <div className="lg:w-4/12">
-          <h1 className="text-4xl mb-6 md:text-5xl text-center md:text-left font-bold text-white">
+          <h1 className="text-4xl mb-6 md:text-5xl font-bold text-white">
             Huge Saving On our Product
           </h1>
-          <p className="text-white font-semibold mb-4">sale Upto 70% Off Our Product</p>
-          <Link to={'/collection'}><button className="py-2 cursor-pointer px-8 duration-300 hover:bg-white hover:text-black text-white font-medium rounded-full border border-white">Shop Now</button></Link>
+          <p className="text-white  font-semibold mb-4">sale Upto 70% Off Our Product</p>
+          <Link to={'/collection'}><button className="py-2  cursor-pointer px-8 duration-300 hover:bg-white hover:text-black text-white font-medium rounded-full border border-white">Shop Now</button></Link>
         </div>
         <div className="lg:w-4/12"></div>
         <div className="lg:w-4/12"></div>

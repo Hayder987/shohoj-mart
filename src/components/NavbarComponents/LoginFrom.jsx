@@ -1,7 +1,11 @@
 
+import { useNavigate } from "react-router";
 import GoogleLogin from "./GoogleLogin";
 
-const LoginFrom = () => {
+const LoginFrom = ({setSignIn}) => {
+    const navigate = useNavigate();
+
+
   return (
     <div>
       <form className="">
@@ -36,10 +40,15 @@ const LoginFrom = () => {
       </form>
       {/* divider */}
       <div className="divider">OR</div>
-      <GoogleLogin/>
+      <GoogleLogin setSignIn={setSignIn}/>
       <div className="mt-6 ">
         <p className="text-center text-sm mb-2">Don't have Account?</p>
-        <button className=" hover:bg-blue-700 hover:text-white hover:border-none duration-300 cursor-pointer font-semibold border border-gray-400 w-full py-2 px-3 rounded-full">Register Now</button>
+        <button 
+        onClick={()=>{
+         navigate('/register')
+         setSignIn(false)
+        }}
+        className=" hover:bg-blue-700 hover:text-white hover:border-none duration-300 cursor-pointer font-semibold border border-gray-400 w-full py-2 px-3 rounded-full">Register Now</button>
       </div>
     </div>
   );
