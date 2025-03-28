@@ -8,6 +8,8 @@ import Contact from "../pages/Contact";
 import Collection from "../pages/Collection";
 import Offers from "../pages/Offers";
 import WishList from "../pages/WishList";
+import UserProfile from "../pages/UserProfile";
+import DashBoard from "../pages/DashBoard";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,8 @@ export const router = createBrowserRouter([
       { path: "/offers", element: <Offers/> },
       { path: "/cart", element: <Offers/> },
       { path: "/wishlist", element: <WishList/> },
+      { path: "/userProfile", element: <UserProfile/> },
+      { path: "dashboard", element: <DashBoard/> },
     ],
   },
 ]);

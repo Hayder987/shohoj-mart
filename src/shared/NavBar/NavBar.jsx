@@ -2,14 +2,31 @@ import { useState } from "react";
 import { BsGift } from "react-icons/bs";
 import { FaBars, FaRegHeart, FaRegUser } from "react-icons/fa";
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
-import { MdHelp } from "react-icons/md";
+import { MdHelp, MdOutlineDashboardCustomize } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import LoginFrom from "../../components/NavbarComponents/LoginFrom";
+import useAuth from "../../hooks/useAuth";
+import { FiLogOut } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
   const [sign, setSignIn] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [subMenu, setSubMenu] = useState(false);
+  const { user, logOutUser, setLoading } = useAuth();
+  const navigate = useNavigate()
+
+  const logOutHandler =async ()=>{
+    try{
+      await logOutUser()
+      navigate('/')
+    }
+    catch(err){
+      setLoading(false)
+      toast.error(err.message)
+    }
+  }
 
   return (
     <div className="py-3 sticky z-20 top-0 bg-blue-800">
@@ -49,15 +66,64 @@ const NavBar = () => {
                 <span className="text-sm font-light">Wish Lists</span>
               </button>
             </Link>
-            <button
-              onClick={() => setSignIn(!sign)}
-              className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center"
-            >
-              <span className="text-3xl">
-                <FaRegUser />
-              </span>
-              <span className="text-sm font-light">Sign In</span>
-            </button>
+            {/* user condition------------------ */}
+            <div className="relative">
+              {user ? (
+                <div
+                  onClick={() => setSubMenu(!subMenu)}
+                  className="cursor-pointer"
+                >
+                  {user?.photoURL ? (
+                    <div>
+                      <img
+                        src={user?.photoURL}
+                        referrerPolicy="no-referrer"
+                        alt=""
+                        className="w-10 h-10 rounded-full border border-yellow-300"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 flex justify-center font-bold items-center rounded-full bg-yellow-200 text-gray-900">
+                      <h1 className="text-xl">
+                        {user?.displayName.slice(0, 2).toUpperCase()}
+                      </h1>
+                    </div>
+                  )}
+                  {/* user logOut */}
+                  <div
+                    onMouseLeave={() => setSubMenu(false)}
+                    className={`${
+                      subMenu ? "flex flex-col justify-center" : "hidden"
+                    } p-4 z-10 rounded-md w-[200px] text-gray-900 absolute top-12 -left-20 bg-blue-200`}
+                  >
+                    <div className=" ">
+                      <Link to={'/userProfile'}><button className="flex  cursor-pointer hover:underline hover:text-blue-700 gap-2 items-center justify-center"><span className=""><FaRegUser /></span>Update Profile</button></Link>
+                      <Link to={'dashboard'}><button className="flex mt-2 cursor-pointer hover:underline hover:text-blue-700 gap-2 items-center justify-center"><span className=""><MdOutlineDashboardCustomize /></span>DashBoard</button></Link>
+                    </div>
+                    <div className="divider"></div>
+                    <button
+                     onClick={logOutHandler}
+                     className="border flex gap-2 items-center justify-center cursor-pointer border-blue-300 py-1 px-2 rounded-md">
+                      <span className="">
+                        <FiLogOut />
+                      </span>
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setSignIn(!sign)}
+                  className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center"
+                >
+                  <span className="text-3xl">
+                    <FaRegUser />
+                  </span>
+                  <span className="text-sm font-light">Sign In</span>
+                </button>
+              )}
+            </div>
+            {/* user condition----------------- */}
             <Link to={"/cart"}>
               <button className="flex relative text-yellow-400 flex-col cursor-pointer justify-center items-center">
                 <span className="text-3xl">
@@ -130,14 +196,62 @@ const NavBar = () => {
           <FaBars />
         </button>
         <div className="flex items-center gap-6">
-          <button
-            onClick={() => setSignIn(!sign)}
-            className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center"
-          >
-            <span className="text-2xl">
-              <FaRegUser />
-            </span>
-          </button>
+          {/* user condition------------------ */}
+          <div className="relative">
+              {user ? (
+                <div
+                  onClick={() => setSubMenu(!subMenu)}
+                  className="cursor-pointer"
+                >
+                  {user?.photoURL ? (
+                    <div>
+                      <img
+                        src={user?.photoURL}
+                        referrerPolicy="no-referrer"
+                        alt=""
+                        className="w-10 h-10 rounded-full border border-yellow-300"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 flex justify-center font-bold items-center rounded-full bg-yellow-200 text-gray-900">
+                      <h1 className="text-xl">
+                        {user?.displayName.slice(0, 2).toUpperCase()}
+                      </h1>
+                    </div>
+                  )}
+                  {/* user logOut */}
+                  <div
+                    onMouseLeave={() => setSubMenu(false)}
+                    className={`${
+                      subMenu ? "flex flex-col justify-center" : "hidden"
+                    } p-4 z-10 rounded-md w-[200px] text-gray-900 absolute top-12 -left-20 bg-blue-200`}
+                  >
+                    <div className=" ">
+                      <Link to={'/userProfile'}><button className="flex  cursor-pointer hover:underline hover:text-blue-700 gap-2 items-center justify-center"><span className=""><FaRegUser /></span>Update Profile</button></Link>
+                      <Link to={'dashboard'}><button className="flex mt-2 cursor-pointer hover:underline hover:text-blue-700 gap-2 items-center justify-center"><span className=""><MdOutlineDashboardCustomize /></span>DashBoard</button></Link>
+                    </div>
+                    <div className="divider"></div>
+                    <button
+                     onClick={logOutHandler}
+                     className="border flex gap-2 items-center justify-center cursor-pointer border-blue-300 py-1 px-2 rounded-md">
+                      <span className="">
+                        <FiLogOut />
+                      </span>
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setSignIn(!sign)}
+                  className="flex text-yellow-400 flex-col cursor-pointer justify-center items-center"
+                >
+                  <span className="text-2xl">
+                    <FaRegUser />
+                  </span>
+                </button>
+              )}
+            </div>
           <Link to={"/cart"}>
             <button className="flex relative text-yellow-400 flex-col cursor-pointer justify-center items-center">
               <span className="text-2xl">
@@ -182,9 +296,7 @@ const NavBar = () => {
           </div>
           {/* Menu*/}
           <div className="">
-            <ul
-             onClick={()=> setMenu(!menu)}
-             className="flex flex-col gap-6 ">
+            <ul onClick={() => setMenu(!menu)} className="flex flex-col gap-6 ">
               <NavLink to={"/"}>
                 <li className="">Home</li>
               </NavLink>
@@ -201,7 +313,6 @@ const NavBar = () => {
                 <li className="">Offers</li>
               </NavLink>
             </ul>
-
           </div>
         </div>
       </div>

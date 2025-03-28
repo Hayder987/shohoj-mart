@@ -1,14 +1,37 @@
 
 import { useNavigate } from "react-router";
 import GoogleLogin from "./GoogleLogin";
+import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const LoginFrom = ({setSignIn}) => {
     const navigate = useNavigate();
+    const {loginUser, loading, setLoading} = useAuth()
+    
+    const formHandler  =async e => {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.email.value;
+      const password = form.password.value;
 
+      try{
+       await loginUser(email, password)
+       setSignIn(false)
+       toast.success('Login Successfully')
+       form.reset();
+      }
+      catch(err){
+        setLoading(false)
+        toast.error(err.message)
+      }
+
+    }
 
   return (
     <div>
-      <form className="">
+      <form
+      onSubmit={formHandler}
+       className="">
         <div className="flex flex-col gap-4">
           {/* email */}
           <div className="w-full flex flex-col">
@@ -34,7 +57,11 @@ const LoginFrom = ({setSignIn}) => {
           </div>
           {/* submit btn */}
           <div className="mt-2">
-           <input type="submit" value="Login" className="w-full py-2 px-3 cursor-pointer font-semibold text-white rounded-full bg-blue-700" />
+           <input 
+           type="submit" 
+           value={`${loading?'loading...':'Login'}`} 
+           disabled={loading}
+           className={`w-full ${loading?'disabled:cursor-not-allowed':''} py-2 px-3 cursor-pointer font-semibold text-white rounded-full bg-blue-700`} />
           </div>
         </div>
       </form>

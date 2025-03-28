@@ -1,8 +1,11 @@
 import React from "react";
 import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const RegisterForm = () => {
-  const { registerUser, loading } = useAuth();
+  const { registerUser, loading, setLoading, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
 
   const fromHandler = async (e) => {
     e.preventDefault();
@@ -13,9 +16,13 @@ const RegisterForm = () => {
 
     try {
       await registerUser(email, password);
-      
+      await updateUserProfile(name, '')
+      toast.success('User Registration Success Fully')
+      navigate('/')
+      form.reset();
     } catch (err) {
-      console.log(err);
+      setLoading(false)
+      toast.error(err.message)
     }
   };
 
