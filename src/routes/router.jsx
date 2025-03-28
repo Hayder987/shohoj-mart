@@ -10,6 +10,7 @@ import Offers from "../pages/Offers";
 import WishList from "../pages/WishList";
 import UserProfile from "../pages/UserProfile";
 import DashBoard from "../pages/DashBoard";
+import PrivateRoute from "../private/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -24,9 +25,9 @@ export const router = createBrowserRouter([
       { path: "/collection", element: <Collection/> },
       { path: "/offers", element: <Offers/> },
       { path: "/cart", element: <Offers/> },
-      { path: "/wishlist", element: <WishList/> },
-      { path: "/userProfile", element: <UserProfile/> },
-      { path: "dashboard", element: <DashBoard/> },
+      { path: "/wishlist", element: <PrivateRoute><WishList/></PrivateRoute> },
+      { path: "/userProfile", element: <PrivateRoute><UserProfile/></PrivateRoute> },
+      { path: "dashboard", element: <PrivateRoute><DashBoard/> </PrivateRoute>},
     ],
   },
 ]);

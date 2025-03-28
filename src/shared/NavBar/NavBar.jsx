@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsGift } from "react-icons/bs";
 import { FaBars, FaRegHeart, FaRegUser } from "react-icons/fa";
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
@@ -9,9 +9,10 @@ import LoginFrom from "../../components/NavbarComponents/LoginFrom";
 import useAuth from "../../hooks/useAuth";
 import { FiLogOut } from "react-icons/fi";
 import toast from "react-hot-toast";
+import { UtilitesContext } from "../../context/UtilitesProvider";
 
 const NavBar = () => {
-  const [sign, setSignIn] = useState(false);
+  const {sign, setSignIn} = useContext(UtilitesContext)
   const [menu, setMenu] = useState(false);
   const [subMenu, setSubMenu] = useState(false);
   const { user, logOutUser, setLoading } = useAuth();
@@ -94,7 +95,7 @@ const NavBar = () => {
                     onMouseLeave={() => setSubMenu(false)}
                     className={`${
                       subMenu ? "flex flex-col justify-center" : "hidden"
-                    } p-4 z-10 rounded-md w-[200px] text-gray-900 absolute top-12 -left-20 bg-blue-200`}
+                    } px-4 py-8 z-10 rounded-md w-[200px] text-gray-900 absolute top-12 -left-32 md:-left-24 bg-blue-200`}
                   >
                     <div className=" ">
                       <Link to={'/userProfile'}><button className="flex  cursor-pointer hover:underline hover:text-blue-700 gap-2 items-center justify-center"><span className=""><FaRegUser /></span>Update Profile</button></Link>
@@ -224,7 +225,7 @@ const NavBar = () => {
                     onMouseLeave={() => setSubMenu(false)}
                     className={`${
                       subMenu ? "flex flex-col justify-center" : "hidden"
-                    } p-4 z-10 rounded-md w-[200px] text-gray-900 absolute top-12 -left-20 bg-blue-200`}
+                    } px-4 py-8 z-10 rounded-md w-[200px] text-gray-900 absolute top-12 -left-32 md:-left-24 bg-blue-200`}
                   >
                     <div className=" ">
                       <Link to={'/userProfile'}><button className="flex  cursor-pointer hover:underline hover:text-blue-700 gap-2 items-center justify-center"><span className=""><FaRegUser /></span>Update Profile</button></Link>

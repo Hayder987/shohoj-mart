@@ -1,8 +1,10 @@
 
-
 const WishList = () => {
+  
   return (
-    <div>WishList</div>
+    <div>
+      wish list
+    </div>
   )
 }
 
