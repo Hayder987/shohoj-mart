@@ -310,6 +310,9 @@ const NavBar = () => {
               <NavLink to={"/help"}>
                 <li className="">Help</li>
               </NavLink>
+              <NavLink to={"/wishlist"}>
+                <li className="">WishList</li>
+              </NavLink>
               <NavLink to={"/offers"}>
                 <li className="">Offers</li>
               </NavLink>

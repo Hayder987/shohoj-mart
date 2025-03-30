@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from "react";
 
 const Offers = () => {
-  return (
-    <div>Offers</div>
-  )
-}
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return <div>Offers</div>;
+};
 
-export default Offers
+export default Offers;
