@@ -8,7 +8,7 @@ import usePublicServer from "../../hooks/usePublicServer";
 const DashBoardFrom = ({ categoryArr, discountArr }) => {
   const [imgPath, setImgPath] = useState("");
   const [imgPreview, setImgPreview] = useState("");
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
   const publicServer = usePublicServer();
   const date = new Date()
@@ -24,6 +24,10 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
   const submitHandler = async (formData) => {
     try {
       setLoading(true);
+      if(!imgPath){
+        setLoading(false)
+        return toast.error('Please Add Image')
+      }
       const image = await imgUploads(imgPath);
       const postData = {
         ...formData,
@@ -33,6 +37,9 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
      await publicServer.post(`/addProduct`, postData)
      setLoading(false)
      toast.success('product Added SuccessFully')
+     reset();
+     setImgPath("");
+     setImgPreview("");
 
     } catch (err) {
       toast.error(err.message);
@@ -193,7 +200,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
             type="submit"
             value={`${loading?'loading...': 'Add Post'}`}
             disabled={loading}
-            className={`${loading?'disabled:cursor-not-allowed':''}w-full mt-6 font-medium cursor-pointer bg-blue-800 text-white py-2 px-4 rounded-sm`}
+            className={`${loading?'disabled:cursor-not-allowed hover:cursor-not-allowed':''}w-full mt-6 font-medium cursor-pointer bg-blue-800 text-white py-2 px-4 rounded-sm`}
           />
         </form>
       </div>
