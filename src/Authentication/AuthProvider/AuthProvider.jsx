@@ -42,9 +42,6 @@ const AuthProvider = ({children}) => {
       setLoading(false)
       return signOut(auth)
     }
-
-   console.log(user)
-   console.log(loading)
    
     const authInfo = {
         user,

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import usePublicServer from "../../../hooks/usePublicServer";
+import { UtilitesContext } from "../../../context/UtilitesProvider";
+import Swal from "sweetalert2";
 
 const RegisterForm = () => {
   const { registerUser, loading, setLoading, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const publicServer = usePublicServer()
+  const {setSignIn} = useContext(UtilitesContext)
 
   const fromHandler = async (e) => {
     e.preventDefault();
@@ -21,9 +24,15 @@ const RegisterForm = () => {
     }
 
     try {
+      const {data} = await publicServer.post(`/users`, userInfo)
+      if(!data?.status){
+        Swal.fire("User already exist! plz login");; 
+       navigate('/')
+       setSignIn(true)
+       return
+      }
       await registerUser(email, password);
       await updateUserProfile(name, '')
-      await publicServer.post(`/users`, userInfo)
       toast.success('User Registration Success Fully')
       navigate('/')
       form.reset();
