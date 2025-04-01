@@ -5,6 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import usePublicServer from "../../../hooks/usePublicServer";
+import { Link } from "react-router";
 
 const AllProduct = () => {
   const [category, setCategory] = useState("");
@@ -42,17 +43,17 @@ const AllProduct = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async(result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-       const {data} =  await publicServer.delete(`/deleteProduct/${id}`)
-       if(data.deletedCount>0){
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-        refetch();
-       }
+        const { data } = await publicServer.delete(`/deleteProduct/${id}`);
+        if (data.deletedCount > 0) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          refetch();
+        }
       }
     });
   };
@@ -106,9 +107,12 @@ const AllProduct = () => {
                 <td>{item?.productCode}</td>
                 <td>{item?.stock}</td>
                 <td className="flex text-2xl items-center gap-4">
-                  <button className="text-blue-800 cursor-pointer">
-                    <FaEdit />
-                  </button>
+                  <Link to={`/dashboard/update-product/${item?._id}`}>
+                    <button className="text-blue-800 cursor-pointer">
+                      <FaEdit />
+                    </button>
+                  </Link>
+
                   <button
                     onClick={() => handleDelete(item?._id)}
                     className="text-red-700 cursor-pointer"
