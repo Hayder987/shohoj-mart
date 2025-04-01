@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaImage } from "react-icons/fa6";
 
 const DashBoardFrom = ({ categoryArr, discountArr }) => {
   const [imgPath, setImgPath] = useState("");
   const [imgPreview, setImgPreview] = useState("");
+  const {register, handleSubmit,} = useForm();
 
   useEffect(() => {
     if (imgPath) {
@@ -13,6 +15,9 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
     }
   }, [imgPath, setImgPreview]);
 
+  const submitHandler = (formData)=>{
+    console.log(formData)
+  }
 
 
   return (
@@ -21,7 +26,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
         <h1 className="text-2xl text-center my-6 font-semibold">Add Product</h1>
         {/* form */}
         <form 
-        
+        onSubmit={handleSubmit(submitHandler)}
         className="flex flex-col gap-6">
           {/* title and brand && model */}
           <div className="flex flex-col md:flex-row  justify-center items-center gap-6">
@@ -29,9 +34,8 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
             <div className="flex flex-col gap-1 w-full">
               <label className="">Title</label>
               <input
-                type="text"
-                required
-                name="title"
+                type="text"     
+                {...register('title', { required: true })}
                 className="border rounded-sm w-full border-gray-400 py-1 px-3"
               />
             </div>
@@ -40,8 +44,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <label className="brandName">Brand Name</label>
               <input
                 type="text"
-                required
-                name=""
+                {...register('brandName', { required: true })}
                 className="border rounded-sm border-gray-400 py-1 px-3"
               />
             </div>
@@ -50,8 +53,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <label className="modelName">Model Name</label>
               <input
                 type="text"
-                required
-                name=""
+                {...register('modelName', { required: true })}
                 className="border rounded-sm border-gray-400 py-1 px-3"
               />
             </div>
@@ -62,8 +64,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
             <div className="flex flex-col gap-1 w-full lg:w-8/12">
               <label className="">Description</label>
               <textarea
-                name="description"
-                required
+                {...register('description', { required: true })}
                 rows={4}
                 cols={10}
                 placeholder="Type Here"
@@ -102,7 +103,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
             {/* Category */}
             <div className="flex flex-col gap-1 w-full">
               <label className="modelName">Category</label>
-              <select required name="category" className="select w-full">
+              <select {...register('category', { required: true })} className="select w-full">
                 {categoryArr.map((item, index) => (
                   <option value={item} key={index}>
                     {item}
@@ -115,8 +116,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <label className="modelName">Price</label>
               <input
                 type="number"
-                name="price"
-                required
+                {...register('price', { required: true })}
                 className="border rounded-sm border-gray-400 py-1 px-3"
               />
             </div>
@@ -125,8 +125,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <label className="modelName">Features</label>
               <input
                 type="text"
-                name="feature"
-                required
+                {...register('feature', { required: true })}
                 className="border rounded-sm border-gray-400 py-1 px-3"
               />
             </div>
@@ -136,7 +135,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
             {/* Category */}
             <div className="flex flex-col gap-1 w-full">
               <label className="modelName">Discount</label>
-              <select required name="discount" className="select w-full">
+              <select {...register('discount', { required: true })} className="select w-full">
                 {discountArr.map((item, index) => (
                   <option value={item} key={index}>
                     {item}
@@ -149,8 +148,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <label className="modelName">Stock</label>
               <input
                 type="number"
-                name="stock"
-                required
+                {...register('stock', { required: true })}
                 className="border rounded-sm border-gray-400 py-1 px-3"
               />
             </div>
@@ -159,8 +157,8 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <label className="modelName">Product Code</label>
               <input
                 type="text"
-                name="productCode"
-                required
+                maxLength={6}
+                {...register('productCode', { required: true })}
                 className="border rounded-sm border-gray-400 py-1 px-3"
               />
             </div>
