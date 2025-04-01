@@ -26,7 +26,7 @@ const RegisterForm = () => {
     try {
       const {data} = await publicServer.post(`/users`, userInfo)
       if(!data?.status){
-        Swal.fire("User already exist! plz login");; 
+       Swal.fire("User already exist! plz login");; 
        navigate('/')
        setSignIn(true)
        return
