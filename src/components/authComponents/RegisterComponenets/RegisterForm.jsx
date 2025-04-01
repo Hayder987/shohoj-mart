@@ -2,10 +2,12 @@ import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import usePublicServer from "../../../hooks/usePublicServer";
 
 const RegisterForm = () => {
   const { registerUser, loading, setLoading, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const publicServer = usePublicServer()
 
   const fromHandler = async (e) => {
     e.preventDefault();
@@ -13,10 +15,15 @@ const RegisterForm = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const userInfo = {
+      name,
+      email,
+    }
 
     try {
       await registerUser(email, password);
       await updateUserProfile(name, '')
+      await publicServer.post(`/users`, userInfo)
       toast.success('User Registration Success Fully')
       navigate('/')
       form.reset();

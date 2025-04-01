@@ -36,7 +36,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <input
                 type="text"     
                 {...register('title', { required: true })}
-                className="border rounded-sm w-full border-gray-400 py-1 px-3"
+                className="border rounded-sm w-full border-gray-400 py-2 px-3"
               />
             </div>
             {/* Brand */}
@@ -45,7 +45,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <input
                 type="text"
                 {...register('brandName', { required: true })}
-                className="border rounded-sm border-gray-400 py-1 px-3"
+                className="border rounded-sm border-gray-400 py-2 px-3"
               />
             </div>
             {/* Model */}
@@ -54,7 +54,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <input
                 type="text"
                 {...register('modelName', { required: true })}
-                className="border rounded-sm border-gray-400 py-1 px-3"
+                className="border rounded-sm border-gray-400 py-2 px-3"
               />
             </div>
           </div>
@@ -117,7 +117,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <input
                 type="number"
                 {...register('price', { required: true })}
-                className="border rounded-sm border-gray-400 py-1 px-3"
+                className="border rounded-sm border-gray-400 py-2 px-3"
               />
             </div>
             {/* feature */}
@@ -126,7 +126,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <input
                 type="text"
                 {...register('feature', { required: true })}
-                className="border rounded-sm border-gray-400 py-1 px-3"
+                className="border rounded-sm border-gray-400 py-2 px-3"
               />
             </div>
           </div>
@@ -149,7 +149,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
               <input
                 type="number"
                 {...register('stock', { required: true })}
-                className="border rounded-sm border-gray-400 py-1 px-3"
+                className="border rounded-sm border-gray-400 py-2 px-3"
               />
             </div>
             {/* Product code*/}
@@ -159,7 +159,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
                 type="text"
                 maxLength={6}
                 {...register('productCode', { required: true })}
-                className="border rounded-sm border-gray-400 py-1 px-3"
+                className="border rounded-sm border-gray-400 py-2 px-3"
               />
             </div>
           </div>

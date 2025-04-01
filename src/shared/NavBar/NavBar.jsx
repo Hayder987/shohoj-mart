@@ -86,7 +86,7 @@ const NavBar = () => {
                   ) : (
                     <div className="w-10 h-10 flex justify-center font-bold items-center rounded-full bg-yellow-200 text-gray-900">
                       <h1 className="text-xl">
-                        {user?.displayName.slice(0, 2).toUpperCase()}
+                        {user?.displayName?.slice(0, 2).toUpperCase()}
                       </h1>
                     </div>
                   )}
@@ -216,7 +216,7 @@ const NavBar = () => {
                   ) : (
                     <div className="w-10 h-10 flex justify-center font-bold items-center rounded-full bg-yellow-200 text-gray-900">
                       <h1 className="text-xl">
-                        {user?.displayName.slice(0, 2).toUpperCase()}
+                        {user?.displayName?.slice(0, 2).toUpperCase()}
                       </h1>
                     </div>
                   )}
