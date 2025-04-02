@@ -83,13 +83,13 @@ const UpdateProduct = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[90vh] flex justify-center items-center w-full">
       {productLoading ? (
         <LoaderSipnner />
       ) : (
-        <div className="max-w-[1200px] mx-auto rounded-md bg-white shadow-md p-6 md:p-10 lg:px-14">
+        <div className="max-w-[1200px] w-full mx-auto rounded-md bg-white shadow-md p-6 md:p-10 lg:px-14">
           <h1 className="text-2xl text-center my-6 font-semibold">
-            Update Product
+            Update <span className="text-blue-800">{product?.title}</span>
           </h1>
           {/* form */}
           <form
