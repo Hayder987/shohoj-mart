@@ -30,10 +30,7 @@ const AllProduct = () => {
     "Accessories",
   ];
 
-  if (isLoading) {
-    return <LoaderSipnner />;
-  }
-
+   
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -89,40 +86,44 @@ const AllProduct = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            {/* row 1 */}
-            {productData.map((item, idx) => (
-              <tr key={idx} className="bg-base-200">
-                <th>{idx + 1}</th>
-                <td>
-                  <img
-                    src={item?.image}
-                    alt={item?.title}
-                    className="w-10 h-10 rounded-full"
-                  />
-                </td>
-                <td>{item?.title}</td>
-                <td>{item?.category}</td>
-                <td>{item?.price} $</td>
-                <td>{item?.productCode}</td>
-                <td>{item?.stock}</td>
-                <td className="flex text-2xl items-center gap-4">
-                  <Link to={`/dashboard/update-product/${item?._id}`}>
-                    <button className="text-blue-800 cursor-pointer">
-                      <FaEdit />
-                    </button>
-                  </Link>
+          {isLoading ? (
+            <LoaderSipnner />
+          ) : (
+            <tbody>
+              {/* row 1 */}
+              {productData.map((item, idx) => (
+                <tr key={idx} className="bg-base-200">
+                  <th>{idx + 1}</th>
+                  <td>
+                    <img
+                      src={item?.image}
+                      alt={item?.title}
+                      className="w-10 h-10 rounded-full"
+                    />
+                  </td>
+                  <td>{item?.title}</td>
+                  <td>{item?.category}</td>
+                  <td>{item?.price} $</td>
+                  <td>{item?.productCode}</td>
+                  <td>{item?.stock}</td>
+                  <td className="flex text-2xl items-center gap-4">
+                    <Link to={`/dashboard/update-product/${item?._id}`}>
+                      <button className="text-blue-800 cursor-pointer">
+                        <FaEdit />
+                      </button>
+                    </Link>
 
-                  <button
-                    onClick={() => handleDelete(item?._id)}
-                    className="text-red-700 cursor-pointer"
-                  >
-                    <RiDeleteBin2Fill />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                    <button
+                      onClick={() => handleDelete(item?._id)}
+                      className="text-red-700 cursor-pointer"
+                    >
+                      <RiDeleteBin2Fill />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

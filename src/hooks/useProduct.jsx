@@ -7,7 +7,7 @@ const useProduct = (category) => {
   const { data: productData, isLoading, refetch } = useQuery({
     queryKey: ["product-data", category], 
     queryFn: async () => {
-      const { data } = await publicServer.get(`/allProducts?category=${category}`); // Corrected URL
+      const { data } = await publicServer.get(`/allProducts?category=${category}`); 
       return data;
     },
   });
