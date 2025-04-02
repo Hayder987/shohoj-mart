@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 const useSingleProduct = (id) => {
     const publicServer = usePublicServer();
 
-    const { data: product, isLoading:productLoading, refetch } = useQuery({
+    const { data: product, isLoading:productLoading, refetch:singleRefetch } = useQuery({
       queryKey: ["single-product", id], 
       queryFn: async () => {
         const { data } = await publicServer.get(`/product/${id}`); 
@@ -13,7 +13,7 @@ const useSingleProduct = (id) => {
       },
     });
 
-  return {product, productLoading, refetch}
+  return {product, productLoading, singleRefetch}
 }
 
 export default useSingleProduct
