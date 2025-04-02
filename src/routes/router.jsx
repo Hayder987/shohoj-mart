@@ -14,6 +14,7 @@ import PrivateRoute from "../private/PrivateRoute";
 import AddProduct from "../components/dashBoardComponents/page/AddProduct";
 import AllProduct from "../components/dashBoardComponents/page/AllProduct";
 import UpdateProduct from "../components/dashBoardComponents/page/UpdateProduct";
+import Details from "../pages/Details";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: "/collection", element: <Collection/> },
       { path: "/offers", element: <Offers/> },
       { path: "/cart", element: <Offers/> },
+      { path: "/details/:id", element: <Details/> },
       { path: "/wishlist", element: <PrivateRoute><WishList/></PrivateRoute> },
       { path: "/userProfile", element: <PrivateRoute><UserProfile/></PrivateRoute> },
       { 

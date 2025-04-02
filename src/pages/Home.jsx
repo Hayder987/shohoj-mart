@@ -27,10 +27,11 @@ const Home = () => {
       <TopPhones/>
       <SectionDivider />
       <div className="">
-        <Link to={'/collection'}><img src={banner2} alt="" className="hover:scale-110 duration-500" /></Link>
+        <Link to={'/collection'}><img src={banner2} alt="" className="hover:scale-105 duration-500" /></Link>
       </div>
       <SectionDivider />
       <Televisons/>
+      <SectionDivider />
     </div>
   );
 };
