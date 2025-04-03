@@ -55,7 +55,9 @@ const Details = () => {
       />
       <Comments
        productTitle={product?.title}
+       id={product?._id}
       />
+      <SectionDivider/>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const RatingReadOnly = ({ rating, maxStars = 5 }) => {
         const starIndex = index + 1;
         const isFilled = starIndex <= rating;
         return (
-          <div key={starIndex} className="text-3xl">
+          <div key={starIndex} className="text-2xl">
             {isFilled ? (
               <FaStar className="text-yellow-500" />
             ) : (
