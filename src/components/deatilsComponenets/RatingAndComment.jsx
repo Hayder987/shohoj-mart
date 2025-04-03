@@ -2,23 +2,50 @@ import { useContext } from "react";
 import Rating from "./Rating";
 import { UtilitesContext } from "../../context/UtilitesProvider";
 import RatingReadOnly from "./RatingReadOnly";
+import useUser from "../../hooks/useUser";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const RatingAndComment = ({product, user}) => {
-  const { rating } = useContext(UtilitesContext);
+  const { rating, setSignIn } = useContext(UtilitesContext);
   const date = new Date();
-  console.log(user)
+  const{userData, userLoading} = useUser();
   
   const reviewHandler = e =>{
     e.preventDefault();
     const form = e.target;
     const comment = form.comment.value;
 
+    if(!user){
+        return Swal.fire({
+            title: "You Need Login First?",
+            text: "You can't comment without login!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I Want!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                setSignIn(true) 
+            }
+          });
+    }
+    if(rating===0){
+        return Swal.fire("please Give Rating!");
+    }
+
     const reviewInfo = {
         rating,
         comment,
         date,
-        name:user?.di
+        name:userData?.name,
+        email:userData?.email,
+        productId: product?._id
     }
+
+    
+   
 
   }
 

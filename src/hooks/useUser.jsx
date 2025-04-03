@@ -11,10 +11,11 @@ const useUser = () => {
     isLoading: userLoading,
     refetch
   } = useQuery({
-    queryKey: ["single-product", user?.email],
+    queryKey: ["userData", user?.email],
     queryFn: async () => {
       const { data } = await publicServer.get(`/user/${user?.email}`);
       return data;
+      
     },
   });
 
