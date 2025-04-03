@@ -8,6 +8,9 @@ import LoaderSipnner from "../components/common/LoaderSipnner";
 import useProduct from "../hooks/useProduct";
 import Slider from "../components/slider/Slider";
 import SliderTitle from "../components/slider/SliderTitle";
+import RatingAndComment from "../components/deatilsComponenets/RatingAndComment";
+import useAuth from "../hooks/useAuth";
+import Comments from "../components/deatilsComponenets/Comments";
 
 const Details = () => {
   useEffect(() => {
@@ -19,6 +22,7 @@ const Details = () => {
   const { productData, isLoading } = useProduct(`${product?.category}`, 7, "recent");
   const discount =
     parseFloat(product?.price) * (parseFloat(product?.discount) / 100);
+  const {user} = useAuth();
 
   return (
     <div className="py-6 px-4 ">
@@ -38,11 +42,20 @@ const Details = () => {
           {isLoading ? (
             <LoaderSipnner />
           ) : (
-            <Slider data={productData} class1={"prev-4"} class2={"next-4"} />
+            <Slider data={productData} class1={"prev-1"} class2={"next-1"} />
           )}
         </div>
       </div>
       <SectionDivider />
+      <div className="divider"></div>
+      {/* rating and comment */}
+      <RatingAndComment
+       product={product}
+       user={user}
+      />
+      <Comments
+       productTitle={product?.title}
+      />
     </div>
   );
 };

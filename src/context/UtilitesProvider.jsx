@@ -4,11 +4,14 @@ export const UtilitesContext = createContext(null);
 
 const UtilitesProvider = ({children}) => {
    const [sign, setSignIn] = useState(false);
+   const [rating, setRating] = useState(0);
 
    
    const utilitesInfo = {
     sign,
-    setSignIn
+    setSignIn,
+    rating, 
+    setRating
    }
 
   return (
