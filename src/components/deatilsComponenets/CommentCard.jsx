@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import RatingReadOnly from "./RatingReadOnly";
 import { format } from "date-fns";
 
@@ -6,9 +7,20 @@ const CommentCard = ({ item }) => {
     ? format(new Date(item?.date), "dd MMM yyyy HH:mm")
     : "";
 
+  // Animation configuration
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
 
   return (
-    <div className="border-y py-6 px-4 border-gray-300">
+    <motion.div
+      className="border-y py-6 px-4 border-gray-300"
+      variants={variants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} 
+    >
       {/* rating and date */}
       <div className="flex mb-4 items-center justify-between">
         <RatingReadOnly rating={item?.rating} />
@@ -21,7 +33,7 @@ const CommentCard = ({ item }) => {
         <span className="">{item?.name}</span>
       </p>
       <p className="">{item?.comment}</p>
-    </div>
+    </motion.div>
   );
 };
 

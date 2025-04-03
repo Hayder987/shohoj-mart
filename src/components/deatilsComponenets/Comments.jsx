@@ -5,7 +5,7 @@ import CommentCard from './CommentCard'
 
 const Comments = ({productTitle, id}) => {
     const {reviewData, reviewLoading, reviewFetch} = useReviews(id);
-    console.log(reviewData)
+    
 
 
   return (
