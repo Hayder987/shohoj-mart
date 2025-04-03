@@ -59,7 +59,7 @@ const NavBar = () => {
   }, [prevScrollPos, scrollThresholdReached]);
 
   return (
-    <div className={`py-3 sticky z-20 top-0 duration-500 bg-blue-800 ${
+    <div className={`py-3 fixed w-full z-20 top-0 duration-500 bg-blue-800 ${
       showNav ? "transform translate-y-0" : "transform -translate-y-full"
     }`}>
       <nav

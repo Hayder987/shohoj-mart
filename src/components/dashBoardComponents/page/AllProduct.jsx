@@ -10,7 +10,7 @@ import { Link } from "react-router";
 const AllProduct = () => {
   const [category, setCategory] = useState("");
   const { productData, isLoading, refetch } = useProduct(
-    category === "All" ? "" : category
+    category === "All" ? "" : category, 0, 'recent'
   );
   const publicServer = usePublicServer();
 

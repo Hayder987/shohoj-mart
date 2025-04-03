@@ -9,6 +9,7 @@ import TopPhones from "../components/homeComponents/TopPhones";
 import banner2 from '../assets/images/home2Banner.webp'
 import { Link } from "react-router";
 import Televisons from "../components/homeComponents/Televisons";
+import PageMargin from "../components/common/PageMargin";
 
 const Home = () => {
   useEffect(() => {
@@ -16,6 +17,7 @@ const Home = () => {
   }, []);
   return (
     <div className="">
+      <PageMargin/>
       <Banner></Banner>
       <InfoShiping></InfoShiping>
       <Fetured></Fetured>
