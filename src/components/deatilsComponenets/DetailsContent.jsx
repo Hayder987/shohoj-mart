@@ -1,8 +1,54 @@
 import { FaRegHeart } from "react-icons/fa";
 import LoaderSipnner from "../common/LoaderSipnner";
 import { BsCartPlus } from "react-icons/bs";
+import useAuth from "../../hooks/useAuth";
+import { useContext } from "react";
+import { UtilitesContext } from "../../context/UtilitesProvider";
+import Swal from "sweetalert2";
+import usePublicServer from "../../hooks/usePublicServer";
+import toast from "react-hot-toast";
 
 const DetailsContent = ({ product, discount, productLoading }) => {
+  const { user } = useAuth();
+  const { setSignIn } = useContext(UtilitesContext);
+  const publicServer = usePublicServer();
+
+  const addCartHandler = async () => {
+    if (!user) {
+      return Swal.fire({
+        title: "You Need Login First?",
+        text: "You can't comment without login!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, I Want!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setSignIn(true);
+        }
+      });
+    }
+
+    try {
+      const cartInfo = {
+        userEmail: user?.email,
+        porductId: product?._id,
+        title: product?.title,
+        brand: product?.brandName,
+        description: product?.description,
+        price: parseInt(product?.price),
+        discount: parseInt(product?.discount),
+        image: product?.image,
+      };
+      await publicServer.post(`/cart`, cartInfo);
+      toast.success(`${product?.title} add To Cart`);
+    } catch (err) {
+      const message = err.response?.data?.message || err.message;
+      toast.error(message);
+    }
+  };
+
   return (
     <div>
       {productLoading ? (
@@ -22,8 +68,9 @@ const DetailsContent = ({ product, discount, productLoading }) => {
                 <span className="">{product?.price - discount}</span>$
               </button>
               <button className=" px-6 py-2 font-semibold bg-gray-200 rounded-full">
-                Save: <span className="text-yellow-600">{discount}$ </span>From{" "}
-                {product?.discount}% OFF
+                Save:{" "}
+                <span className="text-yellow-600">{discount.toFixed(1)}$ </span>
+                From {product?.discount}% OFF
               </button>
               <button className=" px-6 py-2 font-semibold bg-gray-200 rounded-full">
                 Regular Price:{" "}
@@ -63,7 +110,10 @@ const DetailsContent = ({ product, discount, productLoading }) => {
             {/* cart */}
             <div className="mt-6 flex gap-4 items-center">
               {parseInt(product?.stock) ? (
-                <button className="py-2 px-10 flex items-center gap-2 cursor-pointer bg-blue-800 text-white font-medium rounded-full">
+                <button
+                  onClick={addCartHandler}
+                  className="py-2 px-10 flex items-center gap-2 cursor-pointer bg-blue-800 text-white font-medium rounded-full"
+                >
                   Add To Cart{" "}
                   <span className="text-xl">
                     <BsCartPlus />
@@ -72,7 +122,9 @@ const DetailsContent = ({ product, discount, productLoading }) => {
               ) : (
                 ""
               )}
-              <button className="text-3xl hover:text-yellow-600 cursor-pointer"><FaRegHeart /></button>
+              <button className="text-3xl hover:text-yellow-600 cursor-pointer">
+                <FaRegHeart />
+              </button>
             </div>
           </div>
         </div>
