@@ -1,7 +1,7 @@
 import React from 'react'
 import CardWish from './CardWish'
 
-const WishCard = ({wishData, wishLoading, wishRefetch}) => {
+const WishCard = ({wishData, wishRefetch}) => {
   return (
     <div>
         <div className="grid grid-cols-1 bg-white p-4 gap-2">

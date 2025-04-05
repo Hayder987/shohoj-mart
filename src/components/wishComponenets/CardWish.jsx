@@ -1,10 +1,24 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router";
+import usePublicServer from "../../hooks/usePublicServer";
 
 const CardWish = ({ item, wishRefetch }) => {
     const navigate = useNavigate();
+    const publicServer = usePublicServer();
+
+    const deleteHandler =async () =>{
+        try{
+          await publicServer.delete(`/wish/${item?._id}`)
+          wishRefetch();
+        }
+        catch (err){
+            toast.error(err.message);
+        }
+    }
+
   return (
     <div>
       <div className="p-4 border flex items-center border-gray-300">
@@ -34,6 +48,7 @@ const CardWish = ({ item, wishRefetch }) => {
               </p>
               <p className="line-through font-medium mb-2">{item?.price}$</p>
               <button
+              onClick={deleteHandler}
                 className="text-2xl text-red-600 cursor-pointer"
               >
                 <RiDeleteBin2Fill />
