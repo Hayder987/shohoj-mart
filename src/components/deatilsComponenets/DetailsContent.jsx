@@ -7,11 +7,13 @@ import { UtilitesContext } from "../../context/UtilitesProvider";
 import Swal from "sweetalert2";
 import usePublicServer from "../../hooks/usePublicServer";
 import toast from "react-hot-toast";
+import useCart from "../../hooks/useCart";
 
 const DetailsContent = ({ product, discount, productLoading }) => {
   const { user } = useAuth();
   const { setSignIn } = useContext(UtilitesContext);
   const publicServer = usePublicServer();
+  const { cartRefetch} = useCart();
 
   const addCartHandler = async () => {
     if (!user) {
@@ -40,9 +42,11 @@ const DetailsContent = ({ product, discount, productLoading }) => {
         price: parseInt(product?.price),
         discount: parseInt(product?.discount),
         image: product?.image,
+        netPrice: parseFloat(parseFloat(product?.price - discount).toFixed(2)),
       };
       await publicServer.post(`/cart`, cartInfo);
       toast.success(`${product?.title} add To Cart`);
+      cartRefetch();
     } catch (err) {
       const message = err.response?.data?.message || err.message;
       toast.error(message);

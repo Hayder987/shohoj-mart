@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import { FiLogOut } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { UtilitesContext } from "../../context/UtilitesProvider";
+import useCart from "../../hooks/useCart";
 
 const NavBar = () => {
   const {sign, setSignIn} = useContext(UtilitesContext)
@@ -20,6 +21,7 @@ const NavBar = () => {
   const [showNav, setShowNav] = useState(true); 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [scrollThresholdReached, setScrollThresholdReached] = useState(false);
+  const {cartData} = useCart();
 
   const logOutHandler =async ()=>{
     try{
@@ -168,7 +170,7 @@ const NavBar = () => {
               </span>
               <span className="text-sm font-light">Cart</span>
               <span className="bg-blue-800 rounded-full text-xl text-white absolute -top-2 right-0">
-                0
+                {cartData?.length}
               </span>
             </button>
           </Link>
@@ -295,7 +297,7 @@ const NavBar = () => {
                 <IoCartOutline />
               </span>
               <span className="bg-blue-800 rounded-full text-xl text-white absolute -top-2 right-0">
-                0
+              {cartData?.length}
               </span>
             </button>
           </Link>

@@ -15,6 +15,7 @@ import AddProduct from "../components/dashBoardComponents/page/AddProduct";
 import AllProduct from "../components/dashBoardComponents/page/AllProduct";
 import UpdateProduct from "../components/dashBoardComponents/page/UpdateProduct";
 import Details from "../pages/Details";
+import Cart from "../pages/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
       { path: "/contact", element: <Contact /> },
       { path: "/collection", element: <Collection/> },
       { path: "/offers", element: <Offers/> },
-      { path: "/cart", element: <Offers/> },
+      { path: "/cart", element: <Cart/> },
       { path: "/details/:id", element: <Details/> },
       { path: "/wishlist", element: <PrivateRoute><WishList/></PrivateRoute> },
       { path: "/userProfile", element: <PrivateRoute><UserProfile/></PrivateRoute> },
