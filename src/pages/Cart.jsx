@@ -1,12 +1,15 @@
+import { Link } from "react-router";
 import CartCard from "../components/cartComponents/CartCard";
 import PageMargin from "../components/common/PageMargin";
 import useCart from "../hooks/useCart";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import LoaderSipnner from "../components/common/LoaderSipnner";
 
 const Cart = () => {
   const { cartData, cartLoading, cartRefetch } = useCart();
   const subTotal = cartData?.reduce((acc, item) => acc + item?.netPrice, 0);
-  const total = subTotal + 20;
-  
+  const fee = cartData?.length > 0 ? 20 : 0;
+  const total = subTotal + fee;
 
   return (
     <div className="min-h-[100vh] bg-gray-50">
@@ -14,11 +17,35 @@ const Cart = () => {
       <div className="container flex flex-col md:flex-row gap-6 mx-auto px-4 py-10 items-start">
         {/* cart card */}
         <div className="lg:w-8/12 w-full">
-          <CartCard
-            cartData={cartData}
-            cartLoading={cartLoading}
-            cartRefetch={cartRefetch}
-          />
+          {cartLoading ? (
+            <LoaderSipnner />
+          ) : (
+            <div>
+              {cartData?.length === 0 ? (
+                <div className="">
+                  <h1 className="text-3xl font-bold text-center py-8">
+                    No Data Found Please Add Product
+                  </h1>
+                  <div className="flex justify-center py-6">
+                    <Link to="/collection">
+                      <button className="flex items-center gap-2 cursor-pointer bg-blue-700 text-white py-2 px-10">
+                        <span className="">
+                          <FaArrowLeftLong />
+                        </span>
+                        <span className="">Add Item</span>
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <CartCard
+                  cartData={cartData}
+                  cartLoading={cartLoading}
+                  cartRefetch={cartRefetch}
+                />
+              )}
+            </div>
+          )}
         </div>
 
         {/* summary aside */}
@@ -26,9 +53,12 @@ const Cart = () => {
           <div className="bg-white p-6">
             <h1 className="text-2xl font-medium">Order Summary</h1>
             <div className="divider"></div>
-            <p className="mb-3 flex justify-between">SubTotal With Discount: <span className="font-semibold">{subTotal}$</span></p>
+            <p className="mb-3 flex justify-between">
+              SubTotal With Discount:{" "}
+              <span className="font-semibold">{subTotal}$</span>
+            </p>
             <p className="flex justify-between">
-              DeliveryFee: <span className="font-semibold">20$</span>
+              DeliveryFee: <span className="font-semibold">{fee}$</span>
             </p>
             <div className="flex justify-center mb-6 items-center mt-10">
               <input
