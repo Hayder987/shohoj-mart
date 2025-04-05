@@ -8,12 +8,14 @@ import Swal from "sweetalert2";
 import usePublicServer from "../../hooks/usePublicServer";
 import toast from "react-hot-toast";
 import useCart from "../../hooks/useCart";
+// import useWishList from "../../hooks/useWishList";
 
 const DetailsContent = ({ product, discount, productLoading }) => {
   const { user } = useAuth();
   const { setSignIn } = useContext(UtilitesContext);
   const publicServer = usePublicServer();
   const { cartRefetch} = useCart();
+  // const { wishRefetch} = useWishList()
 
   const itemInfo = {
     userEmail: user?.email,
@@ -78,7 +80,7 @@ const DetailsContent = ({ product, discount, productLoading }) => {
     try {
       await publicServer.post(`/wishlist`, itemInfo);
       toast.success(`${product?.title} add To WishList`);
-      // cartRefetch();
+      // wishRefetch();
     } catch (err) {
       const message = err.response?.data?.message || err.message;
       toast.error(message);
