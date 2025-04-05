@@ -15,11 +15,24 @@ const DetailsContent = ({ product, discount, productLoading }) => {
   const publicServer = usePublicServer();
   const { cartRefetch} = useCart();
 
+  const itemInfo = {
+    userEmail: user?.email,
+    porductId: product?._id,
+    title: product?.title,
+    brand: product?.brandName,
+    description: product?.description,
+    price: parseInt(product?.price),
+    discount: parseInt(product?.discount),
+    image: product?.image,
+    netPrice: parseFloat(parseFloat(product?.price - discount).toFixed(2)),
+  };
+
+  // post cart data
   const addCartHandler = async () => {
     if (!user) {
       return Swal.fire({
         title: "You Need Login First?",
-        text: "You can't comment without login!",
+        text: "You can't Add Cart without login!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -33,20 +46,39 @@ const DetailsContent = ({ product, discount, productLoading }) => {
     }
 
     try {
-      const cartInfo = {
-        userEmail: user?.email,
-        porductId: product?._id,
-        title: product?.title,
-        brand: product?.brandName,
-        description: product?.description,
-        price: parseInt(product?.price),
-        discount: parseInt(product?.discount),
-        image: product?.image,
-        netPrice: parseFloat(parseFloat(product?.price - discount).toFixed(2)),
-      };
-      await publicServer.post(`/cart`, cartInfo);
+      
+      await publicServer.post(`/cart`, itemInfo);
       toast.success(`${product?.title} add To Cart`);
       cartRefetch();
+    } catch (err) {
+      const message = err.response?.data?.message || err.message;
+      toast.error(message);
+    }
+  };
+
+
+// post wish data
+  const addwishHandler = async () => {
+    if (!user) {
+      return Swal.fire({
+        title: "You Need Login First?",
+        text: "You can't add Wishlist without login!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, I Want!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setSignIn(true);
+        }
+      });
+    }
+
+    try {
+      await publicServer.post(`/wishlist`, itemInfo);
+      toast.success(`${product?.title} add To WishList`);
+      // cartRefetch();
     } catch (err) {
       const message = err.response?.data?.message || err.message;
       toast.error(message);
@@ -126,7 +158,9 @@ const DetailsContent = ({ product, discount, productLoading }) => {
               ) : (
                 ""
               )}
-              <button className="text-3xl hover:text-yellow-600 cursor-pointer">
+              <button
+              onClick={addwishHandler}
+               className="text-3xl hover:text-yellow-600 cursor-pointer">
                 <FaRegHeart />
               </button>
             </div>
