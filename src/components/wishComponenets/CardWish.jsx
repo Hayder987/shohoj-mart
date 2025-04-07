@@ -39,11 +39,9 @@ const CardWish = ({ item, wishRefetch }) => {
       toast.error(err.message);
     }
   };
-  console.log(item)
 
   const addToCatHandler = async () => {
     const { _id, ...itemToSend } = item;
-    console.log(itemToSend)
     try {
       await publicServer.post(`/cart`, itemToSend);
       await publicServer.delete(`/wish/${_id}`);

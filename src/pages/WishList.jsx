@@ -55,6 +55,7 @@ const WishList = () => {
     await publicServer.delete(`/userWish/${user?.email}`);
     wishRefetch();
     cartRefetch();
+    toast.success('All Item Moved To Cart')
   }
 
 
@@ -69,7 +70,7 @@ const WishList = () => {
           {wishData?.length === 0 ? (
             <div className="">
               <h1 className="text-3xl font-bold py-8 text-center">
-                No Data Found
+                No Wish Data Found
               </h1>
             </div>
           ) : (
