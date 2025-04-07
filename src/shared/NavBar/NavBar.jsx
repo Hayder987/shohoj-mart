@@ -38,7 +38,7 @@ const NavBar = () => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
 
-      if (currentScrollPos > 200) {
+      if (currentScrollPos > 0) {
         setScrollThresholdReached(true);
       } else {
         setScrollThresholdReached(false);

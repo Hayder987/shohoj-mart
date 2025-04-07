@@ -4,8 +4,13 @@ import PageMargin from "../components/common/PageMargin";
 import useCart from "../hooks/useCart";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import LoaderSipnner from "../components/common/LoaderSipnner";
+import { useEffect } from "react";
 
 const Cart = () => {
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+    
   const { cartData, cartLoading, cartRefetch } = useCart();
   const subTotal = cartData?.reduce((acc, item) => acc + item?.netPrice, 0);
   const fee = cartData?.length > 0 ? 20 : 0;

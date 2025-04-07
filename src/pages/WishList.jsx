@@ -9,6 +9,7 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import usePublicServer from "../hooks/usePublicServer";
 import Swal from "sweetalert2";
+import useCart from "../hooks/useCart";
 
 const WishList = () => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const WishList = () => {
   const { wishData, wishLoading, wishRefetch } = useWishList();
   const {user} = useAuth();
   const publicServer = usePublicServer();
+  const { cartRefetch} = useCart()
 
   const deleteAllHandler = () => {
     try {
@@ -47,6 +49,14 @@ const WishList = () => {
   };
 
 
+  const addAllToCart = async() =>{
+    const updatedWishData = wishData?.map(({ _id, ...rest }) => rest);
+    await publicServer.post(`/carts`, updatedWishData); 
+    await publicServer.delete(`/userWish/${user?.email}`);
+    wishRefetch();
+    cartRefetch();
+  }
+
 
   return (
     <div className="bg-gray-50">
@@ -64,7 +74,9 @@ const WishList = () => {
             </div>
           ) : (
             <div className="bg-white px-4 py-3 mb-8 flex items-center justify-between">
-              <button className="text-blue-800 font-semibold flex items-center gap-1 cursor-pointer">
+              <button
+              onClick={addAllToCart}
+               className="text-blue-800 font-semibold flex items-center gap-1 cursor-pointer">
                 Add All To Cart
                 <span className="text-2xl">
                   <MdShoppingCartCheckout />

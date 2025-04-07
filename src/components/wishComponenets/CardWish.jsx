@@ -4,20 +4,59 @@ import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router";
 import usePublicServer from "../../hooks/usePublicServer";
+import Swal from "sweetalert2";
+import useCart from "../../hooks/useCart";
 
 const CardWish = ({ item, wishRefetch }) => {
-    const navigate = useNavigate();
-    const publicServer = usePublicServer();
+  const navigate = useNavigate();
+  const publicServer = usePublicServer();
+  const { cartRefetch} = useCart()
 
-    const deleteHandler =async () =>{
-        try{
-          await publicServer.delete(`/wish/${item?._id}`)
-          wishRefetch();
+  const deleteHandler = async () => {
+    try {
+      Swal.fire({
+        title: `${item?.title} Remove From WishList?`,
+        text: "Are You Sure!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, remove it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const { data } = await publicServer.delete(`/wish/${item?._id}`);
+          if (data?.deletedCount > 0) {
+            wishRefetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
         }
-        catch (err){
-            toast.error(err.message);
-        }
+      });
+    } catch (err) {
+      toast.error(err.message);
     }
+  };
+  console.log(item)
+
+  const addToCatHandler = async () => {
+    const { _id, ...itemToSend } = item;
+    console.log(itemToSend)
+    try {
+      await publicServer.post(`/cart`, itemToSend);
+      await publicServer.delete(`/wish/${_id}`);
+      wishRefetch();
+      cartRefetch();
+      toast.success("Added to Cart and removed from Wishlist!");
+    } catch (err) {
+      const message = err.response?.data?.message || err.message;
+      toast.error(message);
+    }
+  };
+  
+  
 
   return (
     <div>
@@ -25,8 +64,9 @@ const CardWish = ({ item, wishRefetch }) => {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* image and content */}
           <div
-           onClick={()=>navigate(`/details/${item?.porductId}`)}
-           className="lg:w-7/12 w-full flex items-center gap-4">
+            onClick={() => navigate(`/details/${item?.porductId}`)}
+            className="lg:w-7/12 w-full flex items-center gap-4"
+          >
             <div className="w-4/12">
               <img src={item?.image} alt="" className=" object-cover" />
             </div>
@@ -48,7 +88,7 @@ const CardWish = ({ item, wishRefetch }) => {
               </p>
               <p className="line-through font-medium mb-2">{item?.price}$</p>
               <button
-              onClick={deleteHandler}
+                onClick={deleteHandler}
                 className="text-2xl text-red-600 cursor-pointer"
               >
                 <RiDeleteBin2Fill />
@@ -56,9 +96,15 @@ const CardWish = ({ item, wishRefetch }) => {
             </div>
             {/* action */}
             <div className="w-4/12">
-              <button className="bg-blue-700 cursor-pointer text-white flex items-center gap-1 py-3 rounded-sm px-6">
-                <span className="text-xl"><FaPlus /></span>
-                <span className="text-2xl"><FaShoppingCart /></span>
+              <button
+              onClick={addToCatHandler}
+               className="bg-blue-700 cursor-pointer text-white flex items-center gap-1 py-3 rounded-sm px-6">
+                <span className="text-xl">
+                  <FaPlus />
+                </span>
+                <span className="text-2xl">
+                  <FaShoppingCart />
+                </span>
               </button>
             </div>
           </div>
