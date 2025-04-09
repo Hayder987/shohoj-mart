@@ -24,17 +24,20 @@ const Collection = () => {
     "Accessories",
   ];
   const publicServer = usePublicServer();
-  const [category, setCategory] = useState('');
-  console.log(category)
+  const [category, setCategory] = useState("");
+  const [page, setPage] = useState(1);
+  const limit = 12;
 
   const {
     data: allCollection,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["AllProduct", category],
+    queryKey: ["AllProduct", category, page, limit],
     queryFn: async () => {
-      const { data } = await publicServer.get(`/allCollection?category=${category}`);
+      const { data } = await publicServer.get(
+        `/allCollection?category=${category}&page=${page}&limit=${limit}`
+      );
       return data;
     },
   });
@@ -54,20 +57,22 @@ const Collection = () => {
             className="w-full mb-4 border bg-white rounded-md border-gray-300 py-2 px-3"
           />
           <ul className="bg-white rounded-md w-full flex cursor-pointer flex-col gap-2 px-2 py-4">
-            <li 
-            onClick={()=>setCategory('')}
-            className="">All Product</li>
+            <li onClick={() => setCategory("")} className="">
+              All Product
+            </li>
             {categoryArr?.map((item, idx) => (
               <li
-              onClick={()=>setCategory(item)}
-               key={idx} className="hover:underline hover:text-blue-800">
+                onClick={() => setCategory(item)}
+                key={idx}
+                className="hover:underline hover:text-blue-800"
+              >
                 {item}
               </li>
             ))}
           </ul>
         </div>
         {/* content */}
-        <div className="lg:w-10/12 w-full p-6">
+        <div className="lg:w-10/12 w-full min-h-[90vh] p-6">
           {isLoading ? (
             <LoaderSipnner />
           ) : (
@@ -77,6 +82,36 @@ const Collection = () => {
               ))}
             </div>
           )}
+          {/* pagination  */}
+          <div className="flex mt-10 justify-center space-x-4">
+            <button
+              onClick={() => {
+                setPage((prev) => Math.max(prev - 1, 1))
+                window.scrollTo(0, 0);
+              }}
+              disabled={page === 1}
+              className="px-4 py-2 bg-blue-800 text-white rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <span className="px-4 py-2">
+              Page {page} of {allCollection?.totalPages}
+            </span>
+            <button
+              onClick={() =>{
+                setPage((prev) =>
+                  prev < allCollection?.totalPages ? prev + 1 : prev
+                )
+                window.scrollTo(0, 0);
+              }
+                
+              }
+              disabled={page === allCollection?.totalPages}
+              className="px-8 py-2 bg-blue-800 text-white rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
