@@ -4,6 +4,7 @@ import soundbar from "../../assets/images/soundbar.webp";
 import homeApplience from "../../assets/images/home-applience.jpg";
 import phone from "../../assets/images/phone.webp";
 import laptop from "../../assets/images/laptop.webp";
+import { Link } from "react-router";
 
 const Fetured = () => {
   return (
@@ -73,9 +74,11 @@ const Fetured = () => {
               className="rounded-md w-full lg:h-[450px] duration-500 hover:scale-110"
             />
             <div className="absolute bottom-4 right-4">
+              <Link to={'/collection?category=Mobile Phones'}>
               <button className="py-2 cursor-pointer px-8 duration-300 bg-white text-black hover:bg-transparent hover:text-black font-medium rounded-full border border-white">
                 Shop Now
               </button>
+              </Link>
             </div>
             <div className="absolute bottom-6 left-4">
               <p className="border-b-4 font-medium text-white text-xl mb-6 pb-2 border-yellow-600">
@@ -92,9 +95,11 @@ const Fetured = () => {
               className="rounded-md w-full lg:h-[450px] duration-500 hover:scale-110"
             />
             <div className="absolute bottom-4 right-4">
+            <Link to={'/collection?category=Laptops Tablets'}>
               <button className="py-2 cursor-pointer px-8 duration-300 bg-white text-black hover:bg-transparent hover:text-black font-medium rounded-full border border-white">
                 Shop Now
               </button>
+              </Link>
             </div>
             <div className="absolute bottom-6 left-4">
               <p className="border-b-4 font-medium text-white text-xl mb-6 pb-2 border-yellow-600">

@@ -33,11 +33,11 @@ const itemVariants = {
 const TopCategory = () => {
   const categories = [
     { logo: Mobile, name: "Mobile Phones" },
-    { logo: Laptops, name: "Laptops & Tablets" },
+    { logo: Laptops, name: "Laptops Tablets" },
     { logo: Televisions, name: "Televisions" },
-    { logo: PcsAccessories, name: "PCs & Accessories" },
-    { logo: AudioVideo, name: "Audio & Video" },
-    { logo: Gaming, name: "Gaming & Accessories" },
+    { logo: PcsAccessories, name: "PCs Accessories" },
+    { logo: AudioVideo, name: "Audio Video" },
+    { logo: Gaming, name: "Gaming Accessories" },
     { logo: HomeApplience, name: "Home Appliances" },
     { logo: KitchenApplience, name: "Kitchen Appliances" },
     { logo: Cameras, name: "Cameras" },
