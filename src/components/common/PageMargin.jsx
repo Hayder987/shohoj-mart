@@ -2,7 +2,7 @@ import React from 'react'
 
 const PageMargin = () => {
   return (
-    <div className='mt-28 md:mt-32'></div>
+    <div className='mt-16 lg:mt-[130px]'></div>
   )
 }
 
