@@ -40,23 +40,25 @@ const Collection = () => {
   const limit = 12;
   const [search, setSearch] = useState("");
   const [display, setDisplay] = useState(true);
-  const [aside, setAside] = useState(false)
+  const [aside, setAside] = useState(false);
+  const [sort, setSort] = useState(1);
 
   const {
     data: allCollection,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["AllProduct", category, page, limit, search],
+    queryKey: ["AllProduct", category, page, limit, search, sort],
     queryFn: async () => {
       const { data } = await publicServer.get(
-        `/allCollection?category=${category}&page=${page}&limit=${limit}&search=${search}`
+        `/allCollection?category=${category}&page=${page}&limit=${limit}&search=${search}&sort=${sort}`
       );
       return data;
     },
   });
 
   const product = allCollection?.items;
+  console.log(sort)
 
   return (
     <div className="mb-14">
@@ -136,12 +138,12 @@ const Collection = () => {
              className="block text-3xl lg:hidden"><HiDotsVertical /></p>
             <div className="flex items-center gap-6">
               <select
+                onChange={(e)=> setSort(e.target.value)}
                 defaultValue="Pick a text editor"
                 className="select select-primary"
               >
-                <option disabled={true}>Sort</option>
-                <option value={1}>{"Low > High"}</option>
-                <option value={-1}>{"High > Low"}</option>
+                <option value={1}>{"Price Low > High"}</option>
+                <option value={-1}>{"Price High > Low"}</option>
               </select>
               <div className="flex cursor-pointer gap-4 items-center text-3xl">
                 <span
