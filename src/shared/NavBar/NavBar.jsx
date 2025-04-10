@@ -263,7 +263,7 @@ const NavBar = () => {
                     onMouseLeave={() => setSubMenu(false)}
                     className={`${
                       subMenu ? "flex flex-col justify-center" : "hidden"
-                    } px-4 py-8 z-10 rounded-md w-[200px] text-gray-900 absolute top-12 -left-32 md:-left-24 bg-blue-200`}
+                    } px-4 py-8 z-40 rounded-md w-[200px] text-gray-900 absolute top-12 -left-32 md:-left-24 bg-blue-200`}
                   >
                     <div className=" ">
                       <Link to={'/userProfile'}><button className="flex  cursor-pointer hover:underline hover:text-blue-700 gap-2 items-center justify-center"><span className=""><FaRegUser /></span>Update Profile</button></Link>
@@ -306,7 +306,7 @@ const NavBar = () => {
         <div
           className={`bg-white lg:hidden duration-700 px-6 py-10 shadow-2xl ${
             sign ? "fixed right-0 top-0" : "-right-[2000px] fixed top-0"
-          }   z-10 w-9/12 p-12 h-[100vh]`}
+          }   z-[100] w-9/12 p-12 h-[100vh]`}
         >
           <div className="flex mb-12 items-center text-xl justify-between">
             <p className="font-semibold">Login</p>
