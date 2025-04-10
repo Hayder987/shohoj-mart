@@ -41,7 +41,7 @@ const Collection = () => {
   const [search, setSearch] = useState("");
   const [display, setDisplay] = useState(true);
   const [aside, setAside] = useState(false);
-  const [sort, setSort] = useState(1);
+  const [sort, setSort] = useState(0);
 
   const {
     data: allCollection,
@@ -79,7 +79,10 @@ const Collection = () => {
             </li>
             {categoryArr?.map((item, idx) => (
               <li
-                onClick={() => setCategory(item)}
+                onClick={() => {
+                  setCategory(item)
+                  setPage(1)
+                }}
                 key={idx}
                 className={`${
                   item === category
@@ -113,7 +116,10 @@ const Collection = () => {
             </li>
             {categoryArr?.map((item, idx) => (
               <li
-                onClick={() => setCategory(item)}
+                onClick={() => {
+                  setCategory(item)
+                  setPage(1)
+                }}
                 key={idx}
                 className={`${
                   item === category
@@ -142,8 +148,9 @@ const Collection = () => {
                 defaultValue="Pick a text editor"
                 className="select select-primary"
               >
-                <option value={1}>{"Price Low > High"}</option>
-                <option value={-1}>{"Price High > Low"}</option>
+                <option value={0} selected>Sort By Price</option>
+                <option value={1}>{"Low > High"}</option>
+                <option value={-1}>{"High > Low"}</option>
               </select>
               <div className="flex cursor-pointer gap-4 items-center text-3xl">
                 <span
