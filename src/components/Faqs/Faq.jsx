@@ -78,7 +78,7 @@ const Faq = () => {
             x: 0,
             transition: { duration: 0.6, delay: index * 0.1 },
           }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.2 }}
         >
           <div
             className="flex justify-between items-center cursor-pointer"
