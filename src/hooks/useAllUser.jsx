@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import usePrivateServer from "./usePrivateServer";
 
-const useAllUser = () => {
+const useAllUser = (role) => {
   const publicServer = usePrivateServer();
 
   const {
@@ -10,9 +10,9 @@ const useAllUser = () => {
     isLoading: allUserLoading,
     refetch,
   } = useQuery({
-    queryKey: ["allUser"],
+    queryKey: ["allUser", role],
     queryFn: async () => {
-      const { data } = await publicServer.get(`/allUser`);
+      const { data } = await publicServer.get(`/allUser?role=${role}`);
       return data;
     },
   });

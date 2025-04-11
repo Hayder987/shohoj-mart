@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useAllUser from "../../../hooks/useAllUser";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import usePrivateServer from "../../../hooks/usePrivateServer";
@@ -11,8 +11,9 @@ const AllUser = () => {
     window.scrollTo(0, 0);
   }, []);
   const privateServer = usePrivateServer();
+  const [role, setRole] = useState('')
 
-  const { allUserData, allUserLoading, refetch } = useAllUser();
+  const { allUserData, allUserLoading, refetch } = useAllUser(role);
 
   //   update user Role
   const changeUserRole = async (role, id) => {
@@ -52,7 +53,16 @@ const AllUser = () => {
 
   return (
     <div className="px-6 py-10">
-      <p className="font-medium py-4">All User: {allUserData?.length}</p>
+      <div className="flex justify-between items-center py-2 px-4 mb-4 bg-white">
+        <p className="font-medium ">All User: {allUserData?.length}</p>
+        <select 
+        onChange={(e)=> setRole(e.target.value)}
+        className="select max-w-40 select-primary">
+          <option value={""}>All</option>
+          <option value={"user"}>User</option>
+          <option value={"admin"}>Admin</option>
+        </select>
+      </div>
       <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table className="table">
           {/* head */}
@@ -72,7 +82,17 @@ const AllUser = () => {
               <tr>
                 <th>{idx + 1}</th>
                 <td>{item?.name}</td>
-                <td className={`${item?.email === import.meta.env.VITE_Host?'text-red-500 font-medium':''}`}>{item?.email === import.meta.env.VITE_Host?'Email ID is Hidden':item?.email}</td>
+                <td
+                  className={`${
+                    item?.email === import.meta.env.VITE_Host
+                      ? "text-red-500 font-medium"
+                      : ""
+                  }`}
+                >
+                  {item?.email === import.meta.env.VITE_Host
+                    ? "Email ID is Hidden"
+                    : item?.email}
+                </td>
                 <td className="">
                   {format(new Date(item?.date), "dd MMM yyyy")}
                 </td>
@@ -89,11 +109,12 @@ const AllUser = () => {
                       {item?.role}
                     </button>
                   )}
-                  {item?.role === "admin" && item?.email !== import.meta.env.VITE_Host && (
-                    <button className="py-1 font-medium px-8 w-32 rounded-full bg-green-700 text-white">
-                      {item?.role}
-                    </button>
-                  )}
+                  {item?.role === "admin" &&
+                    item?.email !== import.meta.env.VITE_Host && (
+                      <button className="py-1 font-medium px-8 w-32 rounded-full bg-green-700 text-white">
+                        {item?.role}
+                      </button>
+                    )}
                   {item?.email === import.meta.env.VITE_Host && (
                     <button className="py-1 font-medium px-8 w-32 rounded-full bg-black text-white">
                       Site Host
@@ -102,7 +123,7 @@ const AllUser = () => {
                 </td>
                 <td className=" flex justify-center items-center gap-10">
                   <select
-                  disabled={item?.email === import.meta.env.VITE_Host}
+                    disabled={item?.email === import.meta.env.VITE_Host}
                     onChange={(e) => changeUserRole(e.target.value, item?._id)}
                     className="select max-w-40 select-primary"
                   >
