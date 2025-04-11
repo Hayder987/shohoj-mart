@@ -18,9 +18,11 @@ const RegisterForm = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const date = new Date();
     const userInfo = {
       name,
       email,
+      date,
     }
 
     try {

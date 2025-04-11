@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import RatingReadOnly from "./RatingReadOnly";
-import { format } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 
 const CommentCard = ({ item }) => {
   const formattedDate = item?.date
@@ -10,7 +10,11 @@ const CommentCard = ({ item }) => {
   // Animation configuration
   const variants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   return (
@@ -19,7 +23,7 @@ const CommentCard = ({ item }) => {
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.3 }} 
+      viewport={{ once: false, amount: 0.3 }}
     >
       {/* rating and date */}
       <div className="flex mb-4 items-center justify-between">
@@ -32,7 +36,12 @@ const CommentCard = ({ item }) => {
         </span>
         <span className="">{item?.name}</span>
       </p>
-      <p className="">{item?.comment}</p>
+      <div className="flex justify-between items-center">
+        <p className="">{item?.comment}</p>
+        <p className="text-sm font-medium text-blue-700">
+          {formatDistanceToNow(new Date(item?.date), { addSuffix: true })}
+        </p>
+      </div>
     </motion.div>
   );
 };

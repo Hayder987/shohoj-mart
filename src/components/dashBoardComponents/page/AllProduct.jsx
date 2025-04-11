@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useProduct from "../../../hooks/useProduct";
 import LoaderSipnner from "../../common/LoaderSipnner";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
-import usePublicServer from "../../../hooks/usePublicServer";
 import { Link } from "react-router";
+import usePrivateServer from "../../../hooks/usePrivateServer";
 
 const AllProduct = () => {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const [category, setCategory] = useState("");
   const { productData, isLoading, refetch } = useProduct(
     category === "All" ? "" : category, 0, 'recent'
   );
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
 
   const categoryArr = [
     "All",
@@ -42,7 +45,7 @@ const AllProduct = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await publicServer.delete(`/deleteProduct/${id}`);
+        const { data } = await privateServer.delete(`/deleteProduct/${id}`);
         if (data.deletedCount > 0) {
           Swal.fire({
             title: "Deleted!",

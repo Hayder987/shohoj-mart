@@ -16,6 +16,7 @@ import AllProduct from "../components/dashBoardComponents/page/AllProduct";
 import UpdateProduct from "../components/dashBoardComponents/page/UpdateProduct";
 import Details from "../pages/Details";
 import Cart from "../pages/Cart";
+import AllUser from "../components/dashBoardComponents/page/AllUser";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
         children:[
           {path:'add-product', element:<AddProduct/>},
           {path:'all-product', element:<AllProduct/>},
+          {path:'all-user', element:<AllUser/>},
           {path:'update-product/:id', element:<UpdateProduct/>}
         ]
       },

@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import DashBoardFrom from "../DashBoardFrom";
 
 const AddProduct = () => {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+    
   const categoryArr = [
     "Mobile Phones",
     "Laptops Tablets",

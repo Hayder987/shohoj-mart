@@ -6,7 +6,8 @@ import usePublicServer from "../../hooks/usePublicServer";
 
 const GoogleLogin = ({setSignIn}) => {
   const { googleLoginUser, setLoading} = useAuth();
-  const publicServer = usePublicServer()
+  const publicServer = usePublicServer();
+  const date = new Date();
   
   const googleLoginHandler=async ()=>{
     try{
@@ -14,7 +15,8 @@ const GoogleLogin = ({setSignIn}) => {
       console.log(user)
       const userInfo={
         name:user?.displayName,
-        email: user?.email
+        email: user?.email,
+        date
       }
       await publicServer.post(`/users`, userInfo)
       setSignIn(false)

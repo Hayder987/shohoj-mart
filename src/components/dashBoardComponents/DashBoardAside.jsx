@@ -1,4 +1,5 @@
 import { AiOutlineProduct } from "react-icons/ai";
+import { FaUserGroup } from "react-icons/fa6";
 import { RiApps2AddLine } from "react-icons/ri";
 import { Link } from "react-router";
 
@@ -26,6 +27,12 @@ const DashBoardAside = () => {
             <button className="flex mt-4 hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
               <span className="text-xl"><AiOutlineProduct /></span>
               All Product
+            </button>
+          </Link>
+          <Link to={"all-user"}>
+            <button className="flex mt-4 hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
+              <span className="text-xl"><FaUserGroup /></span>
+              All User
             </button>
           </Link>
         </div>
