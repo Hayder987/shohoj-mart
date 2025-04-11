@@ -16,7 +16,7 @@ const Details = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+ 
   const { id } = useParams();
   const { product, productLoading, singleRefetch } = useSingleProduct(id);
   const { productData, isLoading } = useProduct(`${product?.category}`, 7, "recent");

@@ -96,7 +96,7 @@ const AllUser = () => {
                       }`}
                     >
                       {item?.email === import.meta.env.VITE_Host
-                        ? "Email ID is Hidden"
+                        ? "Email ID has been Hidden"
                         : item?.email}
                     </td>
                     <td className="">

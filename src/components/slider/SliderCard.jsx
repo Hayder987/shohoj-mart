@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+
 const SliderCard = ({ product }) => {
   const discount =
     parseFloat(product?.price) * (parseFloat(product?.discount) / 100);

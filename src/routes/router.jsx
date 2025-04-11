@@ -17,6 +17,8 @@ import UpdateProduct from "../components/dashBoardComponents/page/UpdateProduct"
 import Details from "../pages/Details";
 import Cart from "../pages/Cart";
 import AllUser from "../components/dashBoardComponents/page/AllUser";
+import CommonRoute from "../components/dashBoardComponents/page/CommonRoute";
+import AdminPrivate from "../private/AdminPrivate";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +32,7 @@ export const router = createBrowserRouter([
       { path: "/contact", element: <Contact /> },
       { path: "/collection", element: <Collection/> },
       { path: "/offers", element: <Offers/> },
-      { path: "/cart", element: <Cart/> },
+      { path: "/cart", element: <PrivateRoute><Cart/></PrivateRoute> },
       { path: "/details/:id", element: <Details/> },
       { path: "/wishlist", element: <PrivateRoute><WishList/></PrivateRoute> },
       { path: "/userProfile", element: <PrivateRoute><UserProfile/></PrivateRoute> },
@@ -38,10 +40,16 @@ export const router = createBrowserRouter([
         path: "/dashboard", 
         element: <PrivateRoute><DashBoard/> </PrivateRoute>,
         children:[
-          {path:'add-product', element:<AddProduct/>},
-          {path:'all-product', element:<AllProduct/>},
-          {path:'all-user', element:<AllUser/>},
-          {path:'update-product/:id', element:<UpdateProduct/>}
+          // common route
+          {path:'/dashboard', element:<CommonRoute/>},
+          // admin Route
+          {path:'add-product', element:<AdminPrivate><AddProduct/></AdminPrivate>},
+          {path:'all-product', element:<AdminPrivate><AllProduct/></AdminPrivate>},
+          {path:'all-user', element:<AdminPrivate><AllUser/></AdminPrivate>},
+          {path:'update-product/:id', element:<AdminPrivate><UpdateProduct/></AdminPrivate>}
+
+          // user Route
+          
         ]
       },
     ],
