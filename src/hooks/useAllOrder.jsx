@@ -2,7 +2,7 @@ import React from 'react'
 import usePrivateServer from './usePrivateServer';
 import { useQuery } from '@tanstack/react-query';
 
-const useAllOrder = () => {
+const useAllOrder = (sort) => {
     const privateServer = usePrivateServer();
 
   const {
@@ -10,9 +10,9 @@ const useAllOrder = () => {
     isLoading: allOrderLoading,
     refetch,
   } = useQuery({
-    queryKey: ["allOrder"],
+    queryKey: ["allOrder", sort],
     queryFn: async () => {
-      const { data } = await privateServer.get(`/allOrder`);
+      const { data } = await privateServer.get(`/allOrder?sort=${sort}`);
       return data;
     },
   });
