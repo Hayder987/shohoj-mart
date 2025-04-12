@@ -28,7 +28,7 @@ const OrderHistory = () => {
   return (
     <div className="py-6 px-4">
       <div className="py-1 px-4 bg-blue-100 flex mb-2 justify-between items-center">
-        <p className="font-medium">All Order: {allOrder?.length}</p>
+        <p className="font-medium">All Data: {allOrder?.length}</p>
         <select
         onChange={(e)=> setSort(e.target.value)}
           className="select max-w-[160px]"

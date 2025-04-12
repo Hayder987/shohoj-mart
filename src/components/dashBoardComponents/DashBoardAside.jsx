@@ -49,7 +49,7 @@ const DashBoardAside = () => {
                   <span className="text-xl">
                     <FaUserGroup />
                   </span>
-                  All User
+                  Manage User
                 </button>
               </Link>
               <Link to={"all-order"}>
