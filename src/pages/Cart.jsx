@@ -7,10 +7,10 @@ import LoaderSipnner from "../components/common/LoaderSipnner";
 import { useEffect } from "react";
 
 const Cart = () => {
-   useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-    
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { cartData, cartLoading, cartRefetch } = useCart();
   const subTotal = cartData?.reduce((acc, item) => acc + item?.netPrice, 0);
   const fee = cartData?.length > 0 ? 20 : 0;
@@ -79,9 +79,19 @@ const Cart = () => {
             <p className="flex justify-between mb-10">
               Total: <span className="font-semibold">{total}$</span>
             </p>
-            <button className="bg-blue-700 cursor-pointer w-full py-2 px-6 text-white font-medium uppercase">
-              Proceed to checkout ({cartData?.length})
-            </button>
+            {!cartData?.length ? (
+              <button 
+              disabled={!cartData?.length}
+              className="bg-blue-700 cursor-pointer w-full py-2 px-6 text-white font-medium uppercase">
+                Proceed to checkout ({cartData?.length})
+              </button>
+            ) : (
+              <Link to={'/payment'}>
+                <button className="bg-blue-700 cursor-pointer w-full py-2 px-6 text-white font-medium uppercase">
+                  Proceed to checkout ({cartData?.length})
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
