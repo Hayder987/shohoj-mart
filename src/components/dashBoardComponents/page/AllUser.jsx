@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { format, formatDistanceToNow } from "date-fns";
 import LoaderSipnner from "../../common/LoaderSipnner";
+import noUserImage from '../../../assets/images/noUserImage.png'
 
 const AllUser = () => {
   useEffect(() => {
@@ -75,6 +76,7 @@ const AllUser = () => {
               <thead>
                 <tr className="bg-blue-100">
                   <th>Sl</th>
+                  <th>Photo</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Registration Date</th>
@@ -87,6 +89,9 @@ const AllUser = () => {
                 {allUserData?.map((item, idx) => (
                   <tr>
                     <th>{idx + 1}</th>
+                    <td className="">
+                      <img src={item?.profile?item?.profile:noUserImage} alt="" className="w-10 h-10 rounded-full" />
+                    </td>
                     <td>{item?.name}</td>
                     <td
                       className={`${

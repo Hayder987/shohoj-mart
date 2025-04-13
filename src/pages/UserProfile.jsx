@@ -247,7 +247,7 @@ const UserProfile = () => {
     
     <div className="divider mt-[350px] lg:mt-[200px]  py-8"></div>
     {/* content */}
-    <div className="w-full lg:max-w-[1100px] mx-auto">
+    <div className="w-full lg:max-w-[1000px] mx-auto">
      <ProfileComponents/>
     </div>
     </div>
