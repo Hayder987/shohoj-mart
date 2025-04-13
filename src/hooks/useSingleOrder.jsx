@@ -1,9 +1,8 @@
-import React from 'react'
-import usePublicServer from './usePublicServer';
 import { useQuery } from '@tanstack/react-query';
+import usePrivateServer from './usePrivateServer';
 
 const useSingleOrder = (id) => {
-    const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
     const {
         data: singleOrder = {},
         isLoading: singleOrderLoading,
@@ -11,7 +10,7 @@ const useSingleOrder = (id) => {
       } = useQuery({
         queryKey: ["singleOrder", id],
         queryFn: async () => {
-          const { data } = await publicServer.get(`/singleOrder/${id}`);
+          const { data } = await privateServer.get(`/singleOrder/${id}`);
           return data;
         },
       });

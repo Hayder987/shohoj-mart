@@ -19,7 +19,7 @@ const useUser = () => {
     },
   });
 
-  return {userData, userLoading}
+  return {userData, userLoading, refetch}
 };
 
 export default useUser;

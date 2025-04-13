@@ -7,9 +7,9 @@ import { MdShoppingCartCheckout } from "react-icons/md";
 import LoaderSipnner from "../components/common/LoaderSipnner";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
-import usePublicServer from "../hooks/usePublicServer";
 import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";
+import usePrivateServer from "../hooks/usePrivateServer";
 
 const WishList = () => {
   useEffect(() => {
@@ -17,7 +17,7 @@ const WishList = () => {
   }, []);
   const { wishData, wishLoading, wishRefetch } = useWishList();
   const {user} = useAuth();
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
   const { cartRefetch} = useCart()
 
   const deleteAllHandler = () => {
@@ -32,7 +32,7 @@ const WishList = () => {
         confirmButtonText: "Yes, Delete All!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const { data } = await publicServer.delete(`/userWish/${user?.email}`);
+          const { data } = await privateServer.delete(`/userWish/${user?.email}`);
           if (data?.deletedCount > 0) {
             wishRefetch();
             Swal.fire({
@@ -51,8 +51,8 @@ const WishList = () => {
 
   const addAllToCart = async() =>{
     const updatedWishData = wishData?.map(({ _id, ...rest }) => rest);
-    await publicServer.post(`/carts`, updatedWishData); 
-    await publicServer.delete(`/userWish/${user?.email}`);
+    await privateServer.post(`/carts`, updatedWishData); 
+    await privateServer.delete(`/userWish/${user?.email}`);
     wishRefetch();
     cartRefetch();
     toast.success('All Item Moved To Cart')

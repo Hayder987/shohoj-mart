@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
 import { RiDeleteBin2Fill } from "react-icons/ri";
-import usePublicServer from "../../hooks/usePublicServer";
 import Swal from "sweetalert2";
+import usePrivateServer from "../../hooks/usePrivateServer";
 
 const Card = ({ item, cartRefetch }) => {
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
 
   const deleteHandler = (id) => {
     try {
@@ -18,7 +18,7 @@ const Card = ({ item, cartRefetch }) => {
         confirmButtonText: "Yes, remove it!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-        const {data} =  await publicServer.delete(`/cart/${id}`);
+        const {data} =  await privateServer.delete(`/cart/${id}`);
         if(data?.deletedCount>0){
           cartRefetch();
           Swal.fire({

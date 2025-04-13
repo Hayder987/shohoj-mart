@@ -18,7 +18,7 @@ const Details = () => {
   }, []);
  
   const { id } = useParams();
-  const { product, productLoading, singleRefetch } = useSingleProduct(id);
+  const { product, productLoading } = useSingleProduct(id);
   const { productData, isLoading } = useProduct(`${product?.category}`, 7, "recent");
   const discount =
     parseFloat(product?.price) * (parseFloat(product?.discount) / 100);

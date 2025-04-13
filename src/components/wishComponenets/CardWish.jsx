@@ -3,13 +3,13 @@ import toast from "react-hot-toast";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router";
-import usePublicServer from "../../hooks/usePublicServer";
 import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
+import usePrivateServer from "../../hooks/usePrivateServer";
 
 const CardWish = ({ item, wishRefetch }) => {
   const navigate = useNavigate();
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
   const { cartRefetch} = useCart()
 
   const deleteHandler = async () => {
@@ -24,7 +24,7 @@ const CardWish = ({ item, wishRefetch }) => {
         confirmButtonText: "Yes, remove it!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const { data } = await publicServer.delete(`/wish/${item?._id}`);
+          const { data } = await privateServer.delete(`/wish/${item?._id}`);
           if (data?.deletedCount > 0) {
             wishRefetch();
             Swal.fire({
@@ -43,8 +43,8 @@ const CardWish = ({ item, wishRefetch }) => {
   const addToCatHandler = async () => {
     const { _id, ...itemToSend } = item;
     try {
-      await publicServer.post(`/cart`, itemToSend);
-      await publicServer.delete(`/wish/${_id}`);
+      await privateServer.post(`/cart`, itemToSend);
+      await privateServer.delete(`/wish/${_id}`);
       wishRefetch();
       cartRefetch();
       toast.success("Added to Cart and removed from Wishlist!");

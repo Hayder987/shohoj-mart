@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
-import usePublicServer from "./usePublicServer";
+import usePrivateServer from "./usePrivateServer";
 
 const useWishList = () => {
   const { user } = useAuth();
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
 
   const {
     data: wishData,
@@ -13,7 +13,7 @@ const useWishList = () => {
   } = useQuery({
     queryKey: ["wishData", user?.email],
     queryFn: async () => {
-      const { data } = await publicServer.get(`/wishlist/${user?.email}`);
+      const { data } = await privateServer.get(`/wishlist/${user?.email}`);
       return data;
     },
   });

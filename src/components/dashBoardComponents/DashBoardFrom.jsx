@@ -3,14 +3,14 @@ import { useForm } from "react-hook-form";
 import { FaImage } from "react-icons/fa6";
 import imgUploads from "../../api/imgUploads";
 import toast from "react-hot-toast";
-import usePublicServer from "../../hooks/usePublicServer";
+import usePrivateServer from "../../hooks/usePrivateServer";
 
 const DashBoardFrom = ({ categoryArr, discountArr }) => {
   const [imgPath, setImgPath] = useState("");
   const [imgPreview, setImgPreview] = useState("");
   const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
   const date = new Date()
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const DashBoardFrom = ({ categoryArr, discountArr }) => {
         image,
         postDate: date,
       }
-     await publicServer.post(`/addProduct`, postData)
+     await privateServer.post(`/addProduct`, postData)
      setLoading(false)
      toast.success('product Added SuccessFully')
      reset();

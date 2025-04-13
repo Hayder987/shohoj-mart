@@ -4,7 +4,7 @@ import LoaderSipnner from '../common/LoaderSipnner'
 import CommentCard from './CommentCard'
 
 const Comments = ({productTitle, id}) => {
-    const {reviewData, reviewLoading, reviewFetch} = useReviews(id);
+    const {reviewData, reviewLoading} = useReviews(id);
     
 
 

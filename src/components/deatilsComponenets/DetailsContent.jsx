@@ -5,15 +5,15 @@ import useAuth from "../../hooks/useAuth";
 import { useContext } from "react";
 import { UtilitesContext } from "../../context/UtilitesProvider";
 import Swal from "sweetalert2";
-import usePublicServer from "../../hooks/usePublicServer";
 import toast from "react-hot-toast";
 import useCart from "../../hooks/useCart";
+import usePrivateServer from "../../hooks/usePrivateServer";
 // import useWishList from "../../hooks/useWishList";
 
 const DetailsContent = ({ product, discount, productLoading }) => {
   const { user } = useAuth();
   const { setSignIn } = useContext(UtilitesContext);
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
   const { cartRefetch} = useCart();
   // const { wishRefetch} = useWishList()
 
@@ -49,7 +49,7 @@ const DetailsContent = ({ product, discount, productLoading }) => {
 
     try {
       
-      await publicServer.post(`/cart`, itemInfo);
+      await privateServer.post(`/cart`, itemInfo);
       toast.success(`${product?.title} add To Cart`);
       cartRefetch();
     } catch (err) {
@@ -78,7 +78,7 @@ const DetailsContent = ({ product, discount, productLoading }) => {
     }
 
     try {
-      await publicServer.post(`/wishlist`, itemInfo);
+      await privateServer.post(`/wishlist`, itemInfo);
       toast.success(`${product?.title} add To WishList`);
       // wishRefetch();
     } catch (err) {

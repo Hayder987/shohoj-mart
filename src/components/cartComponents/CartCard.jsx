@@ -3,12 +3,12 @@ import Card from "./Card";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import usePublicServer from "../../hooks/usePublicServer";
 import toast from "react-hot-toast";
+import usePrivateServer from "../../hooks/usePrivateServer";
 
 const CartCard = ({ cartData, cartLoading, cartRefetch }) => {
   const { user } = useAuth();
-  const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
 
   const deleteAllHandler = () => {
     try {
@@ -22,7 +22,7 @@ const CartCard = ({ cartData, cartLoading, cartRefetch }) => {
         confirmButtonText: "Yes, Delete All!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const { data } = await publicServer.delete(`/userCart/${user?.email}`);
+          const { data } = await privateServer.delete(`/userCart/${user?.email}`);
           if (data?.deletedCount > 0) {
             cartRefetch();
             Swal.fire({
