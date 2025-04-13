@@ -11,6 +11,7 @@ import usePrivateServer from "../hooks/usePrivateServer";
 import toast from "react-hot-toast";
 import imgUploads from "../api/imgUploads";
 import LoaderSipnner from "../components/common/LoaderSipnner";
+import ProfileComponents from "../components/ProfileComponents/ProfileComponents";
 
 const UserProfile = () => {
   useEffect(() => {
@@ -46,9 +47,10 @@ const UserProfile = () => {
         status: "cover",
         date: date,
       });
+      refetch();
+      toast.success('Image Upload SuccessFully!')
       setEditCover(true);
       setCover("");
-      refetch();
       setCoverLoading(false)
     } catch (err) {
       toast.error(err?.message);
@@ -76,9 +78,10 @@ const UserProfile = () => {
         status: "profile",
         date: date,
       });
+      refetch();
+      toast.success('Image Upload SuccessFully!')
       setEditPhoto(true);
       setPhoto('')
-      refetch();
       setPhotoLoading(false)
     }
     catch (err) {
@@ -99,6 +102,7 @@ const UserProfile = () => {
     try {
       await updateUserProfile(name);
       await privateServer.patch(`/updateName/${user?.email}`, { name: name });
+      toast.success('Name SuccessFully Changed!')
       setEditName(true);
       refetch();
     } catch (err) {
@@ -109,6 +113,7 @@ const UserProfile = () => {
 
   return (
     <div className="">
+      <div className="">
       <PageMargin />
       {userLoading ? (
         <LoaderSipnner />
@@ -160,7 +165,7 @@ const UserProfile = () => {
             </div>
           </div>
           {/* photo and name */}
-          <div className="">
+          <div className="absolute -bottom-[320px] lg:-bottom-[190px] left-0">
             <div className="flex flex-col gap-10 md:flex-row justify-center md:justify-start items-center">
               {/* image */}
               <div className="relative">
@@ -206,8 +211,8 @@ const UserProfile = () => {
                 </div>
               </div>
               {/* name */}
-              <div className="">
-                <div className="w-full">
+              <div className="px-6">
+                <div className="w-full ">
                   <div className="flex items-center ">
                     <input
                       defaultValue={userData?.name}
@@ -235,10 +240,16 @@ const UserProfile = () => {
               </div>
             </div>
           </div>
-          {/* content */}
-          <div className="divider my-8"></div>
         </div>
       )}
+      
+    </div>
+    
+    <div className="divider mt-[350px] lg:mt-[200px]  py-8"></div>
+    {/* content */}
+    <div className="w-full lg:max-w-[1100px] mx-auto">
+     <ProfileComponents/>
+    </div>
     </div>
   );
 };
