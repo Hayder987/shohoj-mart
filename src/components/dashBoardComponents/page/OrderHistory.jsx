@@ -83,7 +83,7 @@ const OrderHistory = () => {
                     )}
                     {item?.status === "complete" && (
                       <button className="w-[120px] py-1 px-4 font-medium bg-green-600 text-white rounded-full">
-                        {item?.status}
+                        Approved
                       </button>
                     )}
                     {item?.status === "delivered" && (

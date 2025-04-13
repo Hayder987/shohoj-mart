@@ -2,12 +2,15 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { useEffect, useState } from "react"
 import { createContext } from "react"
 import { auth } from "../FirebaseConfig/firebase.config";
+import usePublicServer from "../../hooks/usePublicServer";
 
 export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
-    const googleProvider = new GoogleAuthProvider()
+    const googleProvider = new GoogleAuthProvider();
+    const publicServer = usePublicServer();
+
 
     const registerUser = (email, password)=>{
         setLoading(true)
@@ -30,13 +33,23 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(()=>{
-     const unSubscribe = onAuthStateChanged(auth, (currentUser)=>{
+     const unSubscribe = onAuthStateChanged(auth, async(currentUser)=>{
         setUser(currentUser);
+        if(currentUser){
+          const user={
+            email: currentUser?.email,
+            name: currentUser?.displayName
+          }
+          await publicServer.post('/jwt', user, {withCredentials:true})
+        }
+        else{
+          await publicServer.post('/logout', {}, {withCredentials:true})
+        }
         setLoading(false)
      })
     
      return ()=> unSubscribe()
-    }, [])
+    }, [publicServer])
 
     const logOutUser = ()=>{
       setLoading(false)

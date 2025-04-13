@@ -88,7 +88,7 @@ const DashBoardAside = () => {
           </button>
         </Link>
 
-        <Link to={"/"}>
+        <Link to={"/collection"}>
           <button className="flex hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
             <span className="text-xl">
               <MdCollections />
