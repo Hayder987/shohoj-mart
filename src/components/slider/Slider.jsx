@@ -28,7 +28,7 @@ const Slider = ({ data, class1, class2 }) => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <SwiperSlide className="pb-4" key={item?._id}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
