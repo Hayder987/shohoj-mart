@@ -11,7 +11,7 @@ const useGallery = () => {
     isLoading: galleryLoading,
     refetch: galleryRefetch,
   } = useQuery({
-    queryKey: ["cartData", user?.email],
+    queryKey: ["galleryData", user?.email],
     queryFn: async () => {
       const { data } = await privateServer.get(`/gallery/${user?.email}`);
       return data;
