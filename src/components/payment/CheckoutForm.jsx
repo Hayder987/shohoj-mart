@@ -6,11 +6,13 @@ import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import usePrivateServer from "../../hooks/usePrivateServer";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const publicServer = usePublicServer();
+  const privateServer = usePrivateServer();
   const { cartData, cartRefetch } = useCart();
   const subTotal = cartData?.reduce((acc, item) => acc + item?.netPrice, 0);
   const fee = cartData?.length > 0 ? 20 : 0;
@@ -71,6 +73,7 @@ const CheckoutForm = () => {
           },
         },
       });
+      console.log(paymentIntent)
 
     if (confirmError) {
       setLoading(false)
@@ -96,8 +99,8 @@ const CheckoutForm = () => {
 
         };
         try {
-          await publicServer.post(`/payment`, paymentInfo);
-          await publicServer.delete(`/userCart/${user?.email}`);
+          await privateServer.post(`/payment`, paymentInfo);
+          await privateServer.delete(`/userCart/${user?.email}`);
           Swal.fire({
             title: "payment SuccessFully",
             text: `Transaction Id: ${paymentIntent.id}`,
