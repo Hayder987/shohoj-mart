@@ -74,7 +74,7 @@ const ProfileComponents = ({ item, user, galleryRefetch }) => {
           <img
             src={item?.image}
             alt=""
-            className="w-full h-[350px] md:h-[420px] lg:h-[500px]"
+            className="w-full object-fill h-[350px] md:h-[420px] lg:h-[550px]"
           />
         </div>
       </div>
