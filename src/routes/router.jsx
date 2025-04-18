@@ -22,6 +22,7 @@ import AdminPrivate from "../private/AdminPrivate";
 import Payment from "../pages/Payment";
 import OrderHistory from "../components/dashBoardComponents/page/OrderHistory";
 import MyOrder from "../components/dashBoardComponents/page/MyOrder";
+import AdminDashBoard from "../components/dashBoardComponents/page/AdminDashBoard";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,7 @@ export const router = createBrowserRouter([
           {path:'/dashboard', element:<CommonRoute/>},
           // admin Route
           {path:'add-product', element:<AdminPrivate><AddProduct/></AdminPrivate>},
+          {path:'adminDashboard', element:<AdminPrivate><AdminDashBoard/></AdminPrivate>},
           {path:'all-product', element:<AdminPrivate><AllProduct/></AdminPrivate>},
           {path:'all-user', element:<AdminPrivate><AllUser/></AdminPrivate>},
           {path:'all-order', element:<AdminPrivate><OrderHistory/></AdminPrivate>},

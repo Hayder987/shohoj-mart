@@ -1,6 +1,6 @@
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaUserGroup } from "react-icons/fa6";
-import { RiApps2AddLine } from "react-icons/ri";
+import { RiAdminFill, RiApps2AddLine } from "react-icons/ri";
 import { Link } from "react-router";
 import useUser from "../../hooks/useUser";
 import { IoHome } from "react-icons/io5";
@@ -28,8 +28,16 @@ const DashBoardAside = () => {
           {userData?.role === "admin" ? (
             // admin route---------------
             <div className="">
-              <Link to={"add-product"}>
+               <Link to={"adminDashboard"}>
                 <button className="flex hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
+                  <span className="text-xl">
+                  <RiAdminFill />
+                  </span>
+                  Admin DashBoard
+                </button>
+              </Link>
+              <Link to={"add-product"}>
+                <button className="flex mt-4 hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
                   <span className="text-xl">
                     <RiApps2AddLine />
                   </span>

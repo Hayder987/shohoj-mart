@@ -1,6 +1,6 @@
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaUserGroup } from "react-icons/fa6";
-import { RiApps2AddLine } from "react-icons/ri";
+import { RiAdminFill, RiApps2AddLine } from "react-icons/ri";
 import { Link } from "react-router";
 import { IoHome } from "react-icons/io5";
 import { MdCollections } from "react-icons/md";
@@ -10,14 +10,15 @@ import LoaderSipnner from "../common/LoaderSipnner";
 import useUser from "../../hooks/useUser";
 import { RxCross2 } from "react-icons/rx";
 
-const DashBorardAsideMobile = ({setAside, aside}) => {
+const DashBorardAsideMobile = ({ setAside, aside }) => {
   const { userData, userLoading } = useUser();
   return (
     <div className="py-4">
       <div className="flex justify-end py-4">
         <button
-        onClick={()=> setAside(!aside)}
-         className="text-2xl cursor-pointer">
+          onClick={() => setAside(!aside)}
+          className="text-2xl cursor-pointer"
+        >
           <RxCross2 />
         </button>
       </div>
@@ -28,11 +29,17 @@ const DashBorardAsideMobile = ({setAside, aside}) => {
         <div className="">
           {userData?.role === "admin" ? (
             // admin route---------------
-            <div
-            onClick={()=> setAside(!aside)}
-             className="">
+            <div onClick={() => setAside(!aside)} className="">
+              <Link to={"adminDashboard"}>
+                <button className="flex hover:underline  font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
+                  <span className="text-xl">
+                    <RiAdminFill />
+                  </span>
+                  Admin DashBoard
+                </button>
+              </Link>
               <Link to={"add-product"}>
-                <button className="flex hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
+                <button className="flex mt-4 hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
                   <span className="text-xl">
                     <RiApps2AddLine />
                   </span>
@@ -66,9 +73,7 @@ const DashBorardAsideMobile = ({setAside, aside}) => {
             </div>
           ) : (
             // user Route-------------
-            <div
-            onClick={()=> setAside(!aside)}
-             className="">
+            <div onClick={() => setAside(!aside)} className="">
               <Link to={"my-order"}>
                 <button className="flex mt-4 hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
                   <span className="text-xl">
@@ -83,9 +88,7 @@ const DashBorardAsideMobile = ({setAside, aside}) => {
       )}
       {/* common Route */}
       <div className="border-b mt-40 mb-6 border-gray-300"></div>
-      <div
-      onClick={()=> setAside(!aside)}
-       className="flex flex-col gap-4">
+      <div onClick={() => setAside(!aside)} className="flex flex-col gap-4">
         <Link to={"/"}>
           <button className="flex hover:underline font-medium hover:text-yellow-300 cursor-pointer items-center gap-2">
             <span className="text-xl">
