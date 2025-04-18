@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import dollar from "../../assets/icons/dollar.png";
 import user from "../../assets/icons/user.png";
 import order from "../../assets/icons/order.png";
@@ -5,78 +6,86 @@ import product from "../../assets/icons/product.png";
 import review from "../../assets/icons/review.png";
 import CountUp from "react-countup";
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
 const AdminCard = ({ allInfo }) => {
   return (
-    <div className="grid gap-8 grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4">
-      {/* 1 */}
-      <div className="flex items-center gap-4 w-full py-8 px-5 rounded-md bg-green-200">
-        <div className="w-5/12">
-          <img src={dollar} alt="" className="w-20 h-20" />
-        </div>
-        <div className="w-7/12">
-          <span className="text-2xl md:text-3xl mb-3 lg:text-5xl text-blue-800 font-bold">
-            <CountUp
-              start={1}
-              end={Math.floor(allInfo?.TotalIncome)}
-              duration={2.1}
-            />
-          </span>
-          <p className="text-xl font-semibold ">Revenue</p>
-        </div>
-      </div>
-
-      {/* 2 */}
-      <div className="flex items-center w-full gap-4 py-8 px-5 rounded-md bg-purple-200">
-        <div className="w-5/12">
-          <img src={user} alt="" className="w-20 h-20" />
-        </div>
-        <div className="w-7/12">
-          <span className="text-2xl md:text-3xl mb-3 lg:text-5xl text-blue-800 font-bold">
-            <CountUp start={1} end={allInfo?.allUser} duration={2.2} />
-          </span>
-          <p className="text-xl font-semibold  ">All User</p>
-        </div>
-      </div>
-
-      {/* 3 */}
-      <div className="flex items-center w-full gap-4 py-8 px-5 rounded-md bg-red-200">
-        <div className="w-5/12">
-          <img src={product} alt="" className="w-20 h-20" />
-        </div>
-        <div className="w-7/12">
-          <span className="text-2xl md:text-3xl mb-3 lg:text-5xl text-blue-800 font-bold">
-            <CountUp start={1} end={allInfo?.allProduct} duration={2.1} />
-          </span>
-          <p className="text-xl font-semibold ">All Products</p>
-        </div>
-      </div>
-
-      {/* 4 */}
-      <div className="flex items-center w-full gap-4 py-8 px-5 rounded-md bg-yellow-200">
-        <div className="w-5/12">
-          <img src={order} alt="" className="w-20 h-20" />
-        </div>
-        <div className="w-7/12">
-          <span className="text-2xl md:text-3xl mb-3 lg:text-5xl text-blue-800 font-bold">
-            <CountUp start={1} end={allInfo?.allOrder} duration={2.1} />
-          </span>
-          <p className="text-xl font-semibold ">Total Order</p>
-        </div>
-      </div>
-
-       {/* 5 */}
-       <div className="flex items-center w-full gap-4 py-8 px-5 rounded-md bg-fuchsia-200">
-        <div className="w-5/12">
-          <img src={review} alt="" className="w-20 h-20" />
-        </div>
-        <div className="w-7/12">
-          <span className="text-2xl md:text-3xl mb-3 lg:text-5xl text-blue-800 font-bold">
-            <CountUp start={1} end={allInfo?.allReviewCollection} duration={2.1} />
-          </span>
-          <p className="text-xl font-semibold ">All Review</p>
-        </div>
-      </div>
-    </div>
+    <motion.div
+      className="grid gap-8 grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4"
+      initial="hidden"
+      animate="visible"
+      variants={{
+        visible: {
+          transition: {
+            staggerChildren: 0.2,
+          },
+        },
+      }}
+    >
+      {/* Card Template */}
+      {[
+        {
+          id: 1,
+          title: "Revenue",
+          icon: dollar,
+          bg: "bg-green-200",
+          count: Math.floor(allInfo?.TotalIncome),
+          duration: 2.5,
+        },
+        {
+          id: 2,
+          title: "All User",
+          icon: user,
+          bg: "bg-purple-200",
+          count: allInfo?.allUser,
+          duration: 2.8,
+        },
+        {
+          id: 3,
+          title: "All Products",
+          icon: product,
+          bg: "bg-red-200",
+          count: allInfo?.allProduct,
+          duration: 4,
+        },
+        {
+          id: 4,
+          title: "Total Order",
+          icon: order,
+          bg: "bg-yellow-200",
+          count: allInfo?.allOrder,
+          duration: 4,
+        },
+        {
+          id: 5,
+          title: "All Review",
+          icon: review,
+          bg: "bg-fuchsia-200",
+          count: allInfo?.allReviewCollection,
+          duration: 5,
+        },
+      ].map(({ id, title, icon, bg, count, duration }) => (
+        <motion.div
+          key={id}
+          variants={cardVariants}
+          transition={{ duration: 0.4 }}
+          className={`flex items-center w-full gap-4 py-8 px-5 rounded-md ${bg}`}
+        >
+          <div className="w-5/12">
+            <img src={icon} alt={title} className="w-20 h-20" />
+          </div>
+          <div className="w-7/12">
+            <span className="text-2xl md:text-3xl mb-3 lg:text-5xl text-blue-800 font-bold">
+              <CountUp start={1} end={count} duration={duration} />
+            </span>
+            <p className="text-xl font-semibold">{title}</p>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 };
 
