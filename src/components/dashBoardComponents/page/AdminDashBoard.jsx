@@ -1,12 +1,17 @@
-
+import useAllInformation from "../../../hooks/useAllInformation";
+import AdminCard from "../AdminCard";
 
 const AdminDashBoard = () => {
+  const { allInfo, allinfoLoading, refetch } = useAllInformation();
+
+  console.log(allInfo);
   return (
     <div className="py-10 px-4">
-
-       <h1 className="">czxcxzczxc</h1>
+      <div className="">
+       <AdminCard allInfo={allInfo}/>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminDashBoard
+export default AdminDashBoard;

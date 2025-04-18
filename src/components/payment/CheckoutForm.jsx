@@ -28,7 +28,7 @@ const CheckoutForm = () => {
 
   useEffect(() => {
     publicServer
-      .post(`/create-payment-intent`, { price: total })
+      .post(`/create-payment-intent`, { price: parseInt(total) })
       .then((res) => {
         setClientSecret(res?.data?.clientSecret);
       });
