@@ -29,7 +29,7 @@ const AdminCard = ({ allInfo }) => {
       {[
         {
           id: 1,
-          title: "Revenue",
+          title: "Total Revenue",
           icon: dollar,
           bg: "bg-green-200",
           count: Math.floor(allInfo?.TotalIncome),
