@@ -4,7 +4,6 @@ ShohojMart+ is a modern, responsive, and feature-rich e-commerce platform built 
 
 🔗 **Live Site:** [shohojmart-f8a93.web.app](https://shohojmart-f8a93.web.app)
 
-![ShohojMart+ Banner](https://via.placeholder.com/1000x400.png?text=ShohojMart%2B+E-commerce+Platform)
 
 ---
 
@@ -28,6 +27,13 @@ Use the following credentials to explore the admin dashboard:
 - 🌐 Responsive UI with Tailwind CSS & Swiper
 - 🔥 Toast Notifications
 - 🧠 Form Handling with React Hook Form
+
+---
+
+## 🔗 API & Backend
+
+- 🌍 **API Base URL:** [https://shohojmart-server.vercel.app](https://shohojmart-server.vercel.app)
+- 📁 **Server Repo:** [shohoj-mart-server (GitHub)](https://github.com/Hayder987/shohoj-mart-server)
 
 ---
 
