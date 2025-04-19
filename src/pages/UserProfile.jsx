@@ -212,7 +212,7 @@ const UserProfile = () => {
                           <RxUpdate />
                         </span>
                         <span className="">
-                          {photoLoading ? "Loading..." : "Upload"}
+                          {photoLoading ? "Loading..." : "click to Upload"}
                         </span>
                       </button>
                     )}

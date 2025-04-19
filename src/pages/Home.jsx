@@ -32,7 +32,7 @@ const Home = () => {
       <SectionDivider />
       <TopPhones/>
       <SectionDivider />
-      <div className="">
+      <div className="flex justify-center">
         <Link to={'/collection'}><img src={banner2} alt="" className="hover:scale-105 duration-500" /></Link>
       </div>
       <SectionDivider />
