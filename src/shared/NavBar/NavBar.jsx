@@ -103,7 +103,9 @@ const NavBar = () => {
           {/* user condition------------------ */}
           <div className="relative">
             {user ? (
-              <div onClick={() => setSubMenu(!subMenu)} className="cursor-pointer">
+              <div 
+              onClick={() => setSubMenu(!subMenu)}
+              className="cursor-pointer">
                 {user?.photoURL ? (
                   <div>
                     <img

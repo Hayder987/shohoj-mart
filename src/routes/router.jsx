@@ -23,11 +23,13 @@ import Payment from "../pages/Payment";
 import OrderHistory from "../components/dashBoardComponents/page/OrderHistory";
 import MyOrder from "../components/dashBoardComponents/page/MyOrder";
 import AdminDashBoard from "../components/dashBoardComponents/page/AdminDashBoard";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
