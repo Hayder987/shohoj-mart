@@ -13,6 +13,7 @@ import imgUploads from "../api/imgUploads";
 import LoaderSipnner from "../components/common/LoaderSipnner";
 import ProfileComponents from "../components/ProfileComponents/ProfileComponents";
 import useGallery from "../hooks/useGallery";
+import { Helmet } from "react-helmet";
 
 const UserProfile = () => {
   useEffect(() => {
@@ -117,6 +118,9 @@ const UserProfile = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>My Profile || shohojmart</title>
+      </Helmet>
       <div className="">
         <PageMargin />
         {userLoading ? (

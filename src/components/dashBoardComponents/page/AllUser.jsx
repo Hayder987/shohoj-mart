@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { format, formatDistanceToNow } from "date-fns";
 import LoaderSipnner from "../../common/LoaderSipnner";
 import noUserImage from '../../../assets/images/noUserImage.png'
+import { Helmet } from "react-helmet";
 
 const AllUser = () => {
   useEffect(() => {
@@ -55,6 +56,9 @@ const AllUser = () => {
 
   return (
     <div className="px-6 py-10">
+      <Helmet>
+        <title>All User || DashBoard</title>
+      </Helmet>
       {allUserLoading ? (
         <LoaderSipnner />
       ) : (

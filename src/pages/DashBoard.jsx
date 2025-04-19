@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router";
 import DashBoardAside from "../components/dashBoardComponents/DashBoardAside";
 import { FaBars } from "react-icons/fa";
 import DashBorardAsideMobile from "../components/dashBoardComponents/DashBorardAsideMobile";
+import { Helmet } from "react-helmet";
 
 const DashBoard = () => {
   useEffect(() => {
@@ -13,6 +14,9 @@ const DashBoard = () => {
 
   return (
     <div className="flex relative">
+      <Helmet>
+        <title>DashBoard || shohojmart</title>
+      </Helmet>
       <div className="py-2 flex justify-between px-4 fixed z-10 top-0 left-0 bg-blue-100 lg:hidden w-full">
         <button
         onClick={()=> setAside(!aside)} 

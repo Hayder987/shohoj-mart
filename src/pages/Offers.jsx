@@ -3,6 +3,7 @@ import PageMargin from "../components/common/PageMargin";
 import offer1 from '../../src/assets/images/banner4.webp'
 import offer2 from '../../src/assets/images/banner-custom-6.webp'
 import { Link } from "react-router";
+import { Helmet } from "react-helmet";
 
 
 const Offers = () => {
@@ -11,6 +12,9 @@ const Offers = () => {
   }, []);
   return (
   <div className="container mx-auto ">
+    <Helmet>
+      <title>Offers || shohojmart</title>
+    </Helmet>
     <PageMargin/>
     <div className="p-6 flex flex-col gap-10 mb-14">
       <Link to={'/collection'}><img src={offer1} alt="" className="hover:scale-105 duration-500" /></Link>

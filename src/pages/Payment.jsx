@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/payment/CheckoutForm";
 import banner from '../assets/images/stripe.webp'
+import { Helmet } from "react-helmet";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK_Key);
 
@@ -14,6 +15,9 @@ const Payment = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Payment || shohojmart</title>
+      </Helmet>
       <PageMargin />
       <div className="lg:max-w-[1400px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-6">
         {/* image */}

@@ -11,6 +11,7 @@ import SliderTitle from "../components/slider/SliderTitle";
 import RatingAndComment from "../components/deatilsComponenets/RatingAndComment";
 import useAuth from "../hooks/useAuth";
 import Comments from "../components/deatilsComponenets/Comments";
+import { Helmet } from "react-helmet";
 
 const Details = () => {
   useEffect(() => {
@@ -26,6 +27,9 @@ const Details = () => {
 
   return (
     <div className="py-6 px-4 ">
+      <Helmet>
+        <title>Details || shohojmart</title>
+      </Helmet>
       <PageMargin />
       <DetailsContent
         product={product}

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import DashBoardFrom from "../DashBoardFrom";
+import { Helmet } from "react-helmet";
 
 const AddProduct = () => {
     useEffect(() => {
@@ -26,6 +27,9 @@ const AddProduct = () => {
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center">
+      <Helmet>
+        <title>Add Product || DashBoard</title>
+      </Helmet>
       <DashBoardFrom categoryArr={categoryArr} discountArr={discountArr} />
     </div>
   );

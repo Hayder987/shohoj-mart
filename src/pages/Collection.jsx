@@ -11,6 +11,7 @@ import { HiSquares2X2 } from "react-icons/hi2";
 import CollectionTable from "../components/collectionComponents/CollectionTable";
 import { HiDotsVertical } from "react-icons/hi";
 import { RxCrossCircled } from "react-icons/rx";
+import { Helmet } from "react-helmet";
 
 const Collection = () => {
   useEffect(() => {
@@ -62,6 +63,9 @@ const Collection = () => {
 
   return (
     <div className="mb-14">
+      <Helmet>
+        <title>Products || shohojmart</title>
+      </Helmet>
       <PageMargin />
       <div className="flex gap-6 relative ">
         {/* aside desktop */}

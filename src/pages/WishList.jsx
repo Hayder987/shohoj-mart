@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";
 import usePrivateServer from "../hooks/usePrivateServer";
+import { Helmet } from "react-helmet";
 
 const WishList = () => {
   useEffect(() => {
@@ -61,6 +62,9 @@ const WishList = () => {
 
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>wishList || shohojmart</title>
+      </Helmet>
       <PageMargin />
       {wishLoading ? (
         <LoaderSipnner />

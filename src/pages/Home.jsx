@@ -10,6 +10,7 @@ import banner2 from '../assets/images/home2Banner.webp'
 import { Link } from "react-router";
 import Televisons from "../components/homeComponents/Televisons";
 import PageMargin from "../components/common/PageMargin";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   useEffect(() => {
@@ -17,6 +18,9 @@ const Home = () => {
   }, []);
   return (
     <div className="">
+      <Helmet>
+        <title>Home || shohojmart</title>
+      </Helmet>
       <PageMargin/>
       <Banner></Banner>
       <InfoShiping></InfoShiping>

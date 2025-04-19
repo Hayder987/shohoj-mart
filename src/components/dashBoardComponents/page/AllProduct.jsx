@@ -6,6 +6,7 @@ import { RiDeleteBin2Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import usePrivateServer from "../../../hooks/usePrivateServer";
+import { Helmet } from "react-helmet";
 
 const AllProduct = () => {
     useEffect(() => {
@@ -60,6 +61,9 @@ const AllProduct = () => {
 
   return (
     <div className="px-2 py-6">
+      <Helmet>
+        <title>All Product || DashBoard</title>
+      </Helmet>
       {/* header */}
       <div className="py-4 flex flex-wrap justify-between items-center">
         <p className="text-xl font-semibold">Product: {productData?.length}</p>

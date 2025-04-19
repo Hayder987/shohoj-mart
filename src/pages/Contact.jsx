@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import contactBannner from "../assets/images/contactUs.jpg";
 import PageMargin from "../components/common/PageMargin";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   useEffect(() => {
@@ -9,6 +10,9 @@ const Contact = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Contact || shohojmart</title>
+      </Helmet>
       <PageMargin />
       <div
         style={{

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import useAllInformation from "../../../hooks/useAllInformation";
 import LoaderSipnner from "../../common/LoaderSipnner";
 import AdminCard from "../AdminCard";
@@ -10,6 +11,9 @@ const AdminDashBoard = () => {
   console.log(allInfo);
   return (
     <div className="py-10 px-4">
+      <Helmet>
+        <title>admin || DashBoard</title>
+      </Helmet>
       {allinfoLoading ? (
         <LoaderSipnner />
       ) : (

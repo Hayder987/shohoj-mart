@@ -4,6 +4,7 @@ import useSingleOrder from "../../../hooks/useSingleOrder";
 import LoaderSipnner from "../../common/LoaderSipnner";
 import { format, formatDistanceToNow } from "date-fns";
 import { TbListDetails } from "react-icons/tb";
+import { Helmet } from "react-helmet";
 
 const MyOrder = () => {
   const { myOrder, myOrderLoading } = useMyOrder();
@@ -12,6 +13,9 @@ const MyOrder = () => {
 
   return (
     <div className="py-10 px-4">
+      <Helmet>
+        <title>My Order || DashBoard</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

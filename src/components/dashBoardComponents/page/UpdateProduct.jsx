@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import imgUploads from "../../../api/imgUploads";
 import LoaderSipnner from "../../common/LoaderSipnner";
 import usePrivateServer from "../../../hooks/usePrivateServer";
+import { Helmet } from "react-helmet";
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -84,6 +85,9 @@ const UpdateProduct = () => {
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center w-full">
+      <Helmet>
+        <title>Update Product || DashBoard</title>
+      </Helmet>
       {productLoading ? (
         <LoaderSipnner />
       ) : (

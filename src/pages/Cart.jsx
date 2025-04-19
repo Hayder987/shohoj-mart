@@ -5,6 +5,7 @@ import useCart from "../hooks/useCart";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import LoaderSipnner from "../components/common/LoaderSipnner";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const Cart = () => {
   useEffect(() => {
@@ -18,6 +19,9 @@ const Cart = () => {
 
   return (
     <div className="min-h-[100vh] bg-gray-50">
+      <Helmet>
+        <title>Cart || shohojmart</title>
+      </Helmet>
       <PageMargin />
       <div className="container flex flex-col md:flex-row gap-6 mx-auto px-4 py-10 items-start">
         {/* cart card */}
