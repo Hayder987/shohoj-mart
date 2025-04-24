@@ -8,7 +8,6 @@ import BestSellingTree from "../BestSellingTree";
 const AdminDashBoard = () => {
   const { allInfo, allinfoLoading } = useAllInformation();
 
-  console.log(allInfo);
   return (
     <div className="py-10 px-4">
       <Helmet>

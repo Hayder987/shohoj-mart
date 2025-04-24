@@ -28,7 +28,6 @@ const ProfileComponents = ({ item, user, galleryRefetch }) => {
             icon: "success",
           });
         }
-        console.log(data);
       }
     });
   };

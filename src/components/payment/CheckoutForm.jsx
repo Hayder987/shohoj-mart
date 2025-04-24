@@ -73,7 +73,6 @@ const CheckoutForm = () => {
           },
         },
       });
-      console.log(paymentIntent)
 
     if (confirmError) {
       setLoading(false)

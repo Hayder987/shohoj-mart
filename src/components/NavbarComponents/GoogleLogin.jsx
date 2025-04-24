@@ -12,7 +12,6 @@ const GoogleLogin = ({setSignIn}) => {
   const googleLoginHandler=async ()=>{
     try{
       const {user} = await googleLoginUser();
-      console.log(user)
       const userInfo={
         name:user?.displayName,
         email: user?.email,

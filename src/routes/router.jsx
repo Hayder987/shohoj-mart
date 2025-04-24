@@ -24,6 +24,7 @@ import OrderHistory from "../components/dashBoardComponents/page/OrderHistory";
 import MyOrder from "../components/dashBoardComponents/page/MyOrder";
 import AdminDashBoard from "../components/dashBoardComponents/page/AdminDashBoard";
 import ErrorPage from "../pages/ErrorPage";
+import ChatBot from "../pages/ChatBot";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/help", element: <HelpSupport /> },
+      { path: "/chat", element: <ChatBot/> },
       { path: "/contact", element: <Contact /> },
       { path: "/collection", element: <Collection/> },
       { path: "/offers", element: <Offers/> },

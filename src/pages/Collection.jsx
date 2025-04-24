@@ -59,7 +59,7 @@ const Collection = () => {
   });
 
   const product = allCollection?.items;
-  console.log(sort)
+
 
   return (
     <div className="mb-14">
