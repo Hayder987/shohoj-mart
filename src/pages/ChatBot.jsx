@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import PageMargin from "../components/common/PageMargin";
 import { getBotResponse } from "../utils/getBotResponse";
 import useAuth from "../hooks/useAuth";
-import AiBanner from "../assets/images/ai-banner.png";
+import AiBanner from "../assets/images/chat-botbanner3.png";
 import { BsFillSendArrowUpFill } from "react-icons/bs";
 
 const ChatBot = () => {
@@ -60,7 +60,7 @@ const ChatBot = () => {
       <div className="px-4 max-w-[900px] mx-auto">
         <div
           ref={messagesContainerRef}
-          className="bg-transparent backdrop-blur-md border py-8 border-gray-600 p-4 rounded shadow space-y-6 h-[500px] lg:h-[550px] overflow-y-auto"
+          className="bg-transparent backdrop-blur-md border py-8 border-blue-600 p-4 rounded shadow space-y-6 h-[500px] lg:h-[550px] overflow-y-auto"
         >
           {messages.length > 0 ? (
             <>
