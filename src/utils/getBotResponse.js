@@ -17,6 +17,23 @@ export const intents = [
     ],
   },
   {
+    tag: "shohojmart",
+    patterns: [
+      "shohojmart",
+      "about shohojmart",
+      "tell me about shohojmart",
+      "tell me about your site",
+      "site description",
+      "site name"
+    ],
+    responses: [
+      "ShohojMart+ is your one-stop online marketplace for electronics, fashion, home essentials, and more. We make shopping simple, fast, and secure.",
+      "ShohojMart+ is a modern e-commerce platform offering great deals on quality products with reliable delivery and customer support.",
+      "Welcome to ShohojMart+ – an all-in-one online store where convenience meets trust. Shop easily and get your essentials delivered to your doorstep."
+    ]
+  },
+  
+  {
     tag: "how are you",
     patterns: ["how are you", "how do you do", "what happened"],
     responses: ["i am fine How can I help you", "i am ok now How can I help you", "i am good How can I help you"],
@@ -56,7 +73,7 @@ export const intents = [
     patterns: ["return product", "refund", "return policy", "can I return", "how to return"],
     responses: [
       "You can return products within 7 days of delivery. Please ensure the product is unused.",
-      "Check our return policy page for full details on refunds and returns."
+      "Check our help page for full details on refunds and returns."
     ]
   },
   {

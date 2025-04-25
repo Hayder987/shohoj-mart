@@ -108,7 +108,7 @@ const ChatBot = () => {
               <p className="text-2xl text-gray-200 font-lg text-center mt-12 px-6 py-4 rounded-lg shadow-lg">
                 🤖 <span className="font-extrabold">Oops!</span> It looks like we
                 haven’t started 💬 chatting yet. Ask me about this site, and I’ll
-                be here to assist you! 😊
+                be here to assist you! 😊 say hello
               </p>
             </div>
           )}
