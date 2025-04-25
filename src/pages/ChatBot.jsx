@@ -6,11 +6,14 @@ import AiBanner from "../assets/images/ai-banner.png";
 import { BsFillSendArrowUpFill } from "react-icons/bs";
 
 const ChatBot = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const { user } = useAuth();
 
-  // Reference to the message container and scroll handling
+
   const messagesContainerRef = useRef(null);
 
   const sendMessage = () => {
@@ -57,7 +60,7 @@ const ChatBot = () => {
       <div className="px-4 max-w-[900px] mx-auto">
         <div
           ref={messagesContainerRef}
-          className="bg-transparent backdrop-blur-md border border-gray-600 p-4 rounded shadow space-y-4 h-[500px] lg:h-[550px] overflow-y-auto"
+          className="bg-transparent backdrop-blur-md border py-8 border-gray-600 p-4 rounded shadow space-y-6 h-[500px] lg:h-[550px] overflow-y-auto"
         >
           {messages.length > 0 ? (
             <>
@@ -70,14 +73,15 @@ const ChatBot = () => {
                   />
                   <div>
                     <strong className="text-sm text-gray-300">{msg.role}</strong>
-                    <div className="text-green-400">{msg.content}</div>
+                    <div className="text-blue-200">{msg.content}</div>
                   </div>
                 </div>
               ))}
             </>
           ) : (
             <div className="p-12">
-              <p className="text-2xl text-gray-200 font-medium text-center mt-12 px-6 py-4 rounded-lg shadow-lg">
+              <p className="text-xl text-center text-gray-300">Hi {user?.displayName} ❤️</p>
+              <p className="text-2xl text-gray-200 font-lg text-center mt-12 px-6 py-4 rounded-lg shadow-lg">
                 🤖 <span className="font-extrabold">Oops!</span> It looks like
                 we haven’t started 💬 chatting yet. Ask me about this site, and I’ll be
                 here to assist you! 😊
@@ -101,7 +105,7 @@ const ChatBot = () => {
           />
           <button
             type="submit"
-            className="bg-green-600 cursor-pointer text-white px-4 py-1 text-3xl rounded"
+            className="bg-blue-700 cursor-pointer text-white px-4 py-1 text-3xl rounded"
           >
             <BsFillSendArrowUpFill />
           </button>

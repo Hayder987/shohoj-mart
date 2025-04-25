@@ -25,6 +25,7 @@ import MyOrder from "../components/dashBoardComponents/page/MyOrder";
 import AdminDashBoard from "../components/dashBoardComponents/page/AdminDashBoard";
 import ErrorPage from "../pages/ErrorPage";
 import ChatBot from "../pages/ChatBot";
+import DeepSeekChat from "../pages/DeepSeekChat";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/help", element: <HelpSupport /> },
       { path: "/chat", element: <ChatBot/> },
+      { path: "/deepseek", element: <DeepSeekChat/> },
       { path: "/contact", element: <Contact /> },
       { path: "/collection", element: <Collection/> },
       { path: "/offers", element: <Offers/> },

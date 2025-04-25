@@ -9,6 +9,14 @@ export const intents = [
     ],
   },
   {
+    tag: "name",
+    patterns: ["name", "what is your name", "what's name", "who are you", "who you"],
+    responses: [
+      "My Name Elisha I am a AI Chatbot ",
+      "My Name Elisha I am a AI Chatbot. I assist you to give information"
+    ],
+  },
+  {
     tag: "how are you",
     patterns: ["how are you", "how do you do", "what happened"],
     responses: ["i am fine How can I help you", "i am ok now How can I help you", "i am good How can I help you"],
@@ -35,6 +43,62 @@ export const intents = [
     patterns: ["payment method", "how to pay", "pay options"],
     responses: ["We accept credit card, mobile banking, and cash on delivery."],
   },
+  {
+    tag: "shipping",
+    patterns: ["shipping info", "delivery time","delivery", "how long to deliver", "when will my order arrive", "shipping options"],
+    responses: [
+      "We offer standard and express delivery. Standard shipping takes 3-5 days.",
+      "Delivery usually takes 3-5 business days depending on your location."
+    ]
+  },
+  {
+    tag: "return_policy",
+    patterns: ["return product", "refund", "return policy", "can I return", "how to return"],
+    responses: [
+      "You can return products within 7 days of delivery. Please ensure the product is unused.",
+      "Check our return policy page for full details on refunds and returns."
+    ]
+  },
+  {
+    tag: "contact_support",
+    patterns: ["need help", "customer support","support", "contact", "talk to someone", "contact number"],
+    responses: [
+      "You can reach our support team via live chat or call us at +8801771814597.",
+      "Need help? Contact us using the 'Help' Page or call our number +8801771814597."
+    ]
+  },
+  {
+    tag: "product_availability",
+    patterns: ["is this available", "in stock", "do you have", "available now"],
+    responses: [
+      "Let me check that for you! Please share the product name.",
+      "Some products may run out fast. Use the 'Notify Me' button if it's out of stock."
+    ]
+  },
+  {
+    tag: "discounts_offers",
+    patterns: ["discount", "offer", "any promo", "coupon", "sale going on"],
+    responses: [
+      "We have seasonal discounts! Check our homepage banner or Offers section.",
+      "Use promo code 'WELCOME10' for 10% off on your first order!"
+    ]
+  },
+  {
+    tag: "track_order",
+    patterns: ["track my order", "order status", "where is my order", "track delivery"],
+    responses: [
+      "Please provide your order ID to check the status.",
+      "You can track your order from the 'My Orders' section after logging in."
+    ]
+  },
+  {
+    tag: "signup_login",
+    patterns: ["how to sign up","how to login", "login help","login", "create account", "register"],
+    responses: [
+      "Click on the 'Sign in' button at the top-right and fill in your details.",
+    ]
+  }
+  
 ];
 
 export const getBotResponse = (input) => {
