@@ -9,6 +9,10 @@ import { UtilitesContext } from "../context/UtilitesProvider";
 import Swal from "sweetalert2";
 
 const DeepSeekChat = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
