@@ -4,7 +4,7 @@ export const intents = [
     tag: "greeting",
     patterns: ["hi", "hello", "hey", "good morning", "good evening"],
     responses: [
-      "Hello! Welcome to ShohojMart+",
+      "Hello! Welcome to ShohojMart+. How can I assist you today?",
       "Hi there! How can I assist you today?",
     ],
   },
@@ -24,7 +24,9 @@ export const intents = [
       "tell me about shohojmart",
       "tell me about your site",
       "site description",
-      "site name"
+      "site name",
+      "site",
+      "website"
     ],
     responses: [
       "ShohojMart+ is your one-stop online marketplace for electronics, fashion, home essentials, and more. We make shopping simple, fast, and secure.",
@@ -35,7 +37,7 @@ export const intents = [
   
   {
     tag: "how are you",
-    patterns: ["how are you", "how do you do", "what happened"],
+    patterns: ["how are you", "how do you do", "what happened", "how"],
     responses: ["i am fine How can I help you", "i am ok now How can I help you", "i am good How can I help you"],
   },
   {
@@ -57,12 +59,12 @@ export const intents = [
   },
   {
     tag: "payment",
-    patterns: ["payment method", "how to pay", "pay options"],
+    patterns: ["payment method", "how to pay", "pay options","payment"],
     responses: ["We accept credit card, mobile banking, and cash on delivery."],
   },
   {
     tag: "shipping",
-    patterns: ["shipping info", "delivery time","delivery", "how long to deliver", "when will my order arrive", "shipping options"],
+    patterns: ["shipping info", "delivery time","shipping", "delivery", "how long to deliver", "when will my order arrive", "shipping options"],
     responses: [
       "We offer standard and express delivery. Standard shipping takes 3-5 days.",
       "Delivery usually takes 3-5 business days depending on your location."
@@ -70,23 +72,22 @@ export const intents = [
   },
   {
     tag: "return_policy",
-    patterns: ["return product", "refund", "return policy", "can I return", "how to return"],
+    patterns: ["return product", "refund", "return policy","return", "can I return", "how to return"],
     responses: [
-      "You can return products within 7 days of delivery. Please ensure the product is unused.",
-      "Check our help page for full details on refunds and returns."
+      "You can return products within 7 days of delivery. Please ensure the product is unused. or Check our help page for full details on refunds and returns.",
     ]
   },
   {
     tag: "contact_support",
-    patterns: ["need help", "customer support","support", "help", "contact", "talk to someone", "contact number"],
+    patterns: ["need help","customer","contact","support", "help", "contact", "talk to someone", "contact number"],
     responses: [
-      "You can reach our support team via live chat or call us at +8801771814597.",
+      "You can reach our support team via contact page or call us at +8801771814597.",
       "Need help? Contact us using the 'Help' Page or call our number +8801771814597."
     ]
   },
   {
     tag: "product_availability",
-    patterns: ["is this available", "available", "in stock","stock", "do you have", "available now"],
+    patterns: ["is this available", "available","availability", "in stock","stock", "do you have", "available now"],
     responses: [
       "Let me check that for you! Please share the product name.",
       "Some products may run out fast. Use the 'Notify Me' button if it's out of stock."
@@ -110,7 +111,7 @@ export const intents = [
   },
   {
     tag: "signup_login",
-    patterns: ["how to sign up","how to login", "login help","login", "create account", "register"],
+    patterns: ["how to sign up","sign","how to login", "login help","login", "create account", "register"],
     responses: [
       "Click on the 'Sign in' button at the top-right and fill in your details.",
     ]
