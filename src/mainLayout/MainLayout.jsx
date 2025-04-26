@@ -16,13 +16,13 @@ const MainLayout = () => {
       <div className="min-h-[calc(100vh-60px)] relative lg:min-h-[calc(100vh-140px)]">
         <Outlet />
         <div className="fixed flex flex-col gap-4 z-20 bottom-16 md:bottom-24 right-6 lg:right-14">
-          <Link to={"/deepseek"}>
+          <Link to={"/hdr"}>
             <div className="relative">
               <div
                 onMouseOver={() => setElisha(true)}
                 onMouseLeave={() => setElisha(false)}
                 className={`${
-                  pathname === "/deepseek" ||
+                  pathname === "/hdr" ||
                   pathname === "/chat" ||
                   pathname === "/help"
                     ? "hidden"
@@ -46,7 +46,7 @@ const MainLayout = () => {
             <div className="">
               <div
                 className={`${
-                  pathname === "/deepseek" ||
+                  pathname === "/hdr" ||
                   pathname === "/chat" ||
                   pathname === "/help"
                     ? "hidden"

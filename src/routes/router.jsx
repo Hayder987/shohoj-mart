@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/help", element: <HelpSupport /> },
       { path: "/chat", element: <ChatBot/> },
-      { path: "/deepseek", element: <DeepSeekChat/> },
+      { path: "/hdr", element: <DeepSeekChat/> },
       { path: "/contact", element: <Contact /> },
       { path: "/collection", element: <Collection/> },
       { path: "/offers", element: <Offers/> },

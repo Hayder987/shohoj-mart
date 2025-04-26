@@ -78,7 +78,7 @@ export const intents = [
   },
   {
     tag: "contact_support",
-    patterns: ["need help", "customer support","support","help", "contact", "talk to someone", "contact number"],
+    patterns: ["need help", "customer support","support", "help", "contact", "talk to someone", "contact number"],
     responses: [
       "You can reach our support team via live chat or call us at +8801771814597.",
       "Need help? Contact us using the 'Help' Page or call our number +8801771814597."
@@ -86,7 +86,7 @@ export const intents = [
   },
   {
     tag: "product_availability",
-    patterns: ["is this available", "in stock","stock", "do you have", "available now"],
+    patterns: ["is this available", "available", "in stock","stock", "do you have", "available now"],
     responses: [
       "Let me check that for you! Please share the product name.",
       "Some products may run out fast. Use the 'Notify Me' button if it's out of stock."
@@ -102,7 +102,7 @@ export const intents = [
   },
   {
     tag: "track_order",
-    patterns: ["track my order", "order status", "where is my order", "track delivery"],
+    patterns: ["track my order","track", "order status", "where is my order", "track delivery"],
     responses: [
       "Please provide your order ID to check the status.",
       "You can track your order from the 'My Orders' section after logging in."
