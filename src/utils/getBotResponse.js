@@ -50,7 +50,7 @@ export const intents = [
   },
   {
     tag: "order_help",
-    patterns: ["how to order",'how to buy product', 'how to buy', "place an order", "order guide"],
+    patterns: ["how to order","order",'how to buy product', 'how to buy', "place an order", "order guide"],
     responses: [
       "To place an order, browse products and click 'Add to Cart', then checkout.",
     ],
@@ -78,7 +78,7 @@ export const intents = [
   },
   {
     tag: "contact_support",
-    patterns: ["need help", "customer support","support", "contact", "talk to someone", "contact number"],
+    patterns: ["need help", "customer support","support","help", "contact", "talk to someone", "contact number"],
     responses: [
       "You can reach our support team via live chat or call us at +8801771814597.",
       "Need help? Contact us using the 'Help' Page or call our number +8801771814597."
@@ -86,7 +86,7 @@ export const intents = [
   },
   {
     tag: "product_availability",
-    patterns: ["is this available", "in stock", "do you have", "available now"],
+    patterns: ["is this available", "in stock","stock", "do you have", "available now"],
     responses: [
       "Let me check that for you! Please share the product name.",
       "Some products may run out fast. Use the 'Notify Me' button if it's out of stock."
@@ -94,7 +94,7 @@ export const intents = [
   },
   {
     tag: "discounts_offers",
-    patterns: ["discount", "offer", "any promo", "coupon", "sale going on"],
+    patterns: ["discount", "offer", "any promo", "coupon","price","cupon", "sale going on"],
     responses: [
       "We have seasonal discounts! Check our homepage banner or Offers section.",
       "Use promo code 'WELCOME10' for 10% off on your first order!"

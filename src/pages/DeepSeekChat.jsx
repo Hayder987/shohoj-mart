@@ -57,11 +57,11 @@ const DeepSeekChat = () => {
         },
         body: JSON.stringify({
           model: "meta-llama/llama-3.2-3b-instruct:free",
-        //   model: "deepseek/deepseek-chat:free",
+          // model: "meta-llama/llama-3.2-1b-instruct:free",
           messages: [{ role: "user", content: input }],
         }),
       });
-      console.log(res)
+
       const data = await res.json();
       const botMessage = data?.choices?.[0]?.message?.content || "No response";
 
@@ -196,7 +196,7 @@ const DeepSeekChat = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="bg-blue-500 text-white px-6 py-3 ml-4 rounded-lg"
+            className="bg-blue-500 text-white px-6 min-w-[80px] py-3 ml-4 rounded-lg"
           >
             {loading ? "Thinking..." : "Ask"}
           </motion.button>

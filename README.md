@@ -1,6 +1,6 @@
 # 🛍️ ShohojMart+
 
-ShohojMart+ is a modern, responsive, and feature-rich e-commerce platform built with React, Firebase, Stripe, and Tailwind CSS. This platform allows users to explore, shop, and securely pay for their favorite products with a smooth and delightful experience.
+ShohojMart+ is a modern, responsive, and feature-rich e-commerce platform built with React, Firebase, Stripe, and Tailwind CSS. This platform allows users to explore, shop, and securely pay for their favorite products with a smooth and delightful experience. It also features an integrated AI Chatbot to provide instant customer support and enhance user interaction.
 
 ## 🔗 **Live Site:** [shohojmart-f8a93.web.app](https://shohojmart-f8a93.web.app)
 
@@ -21,6 +21,7 @@ Use the following credentials to explore the admin dashboard:
 - 🔐 Firebase Authentication
 - 🛒 Add to Cart, Order & Checkout System
 - 💳 Stripe Payment Integration
+- 🤖 AI Chatbot Integration for Customer Support
 - 📦 Real-time Order & Product Management
 - 📊 Recharts-based Data Visualization
 - 🎉 Animations with Lottie and Framer Motion
